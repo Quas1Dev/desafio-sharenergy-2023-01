@@ -1,70 +1,87 @@
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+* {
+  padding: 0;
   margin: 0;
+  box-sizing: border-box;
+  position: relative;
+
+  --rosa: #FF1053;
+  --azul-escuro: #6C6EA0;
+  --azul-claro: #66C7F4;
+  --cinza: #66C7F4;
+
+
+}
+
+:root{
+  font-family: 'calibri';
+  font-size: 20px;
+}
+
+.page_container {
+  margin: auto;
+}
+
+.page_container {
+  max-width: 1200px;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #FEFFFC;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.login_box {
+  flex-basis: 500px;
+  /* max-width: 500px; */
+  margin: auto;
+  padding: 64px 49px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.login_box--login_form {
+  margin-top: 23px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.login_form--field_name {
+  font-weight: 400;
+  line-height: 22px;
+  display: block;
+  margin-top: 13px;
+}
+
+.login_box--title {
+  font-size: 24px;
+  line-height: 26px;
+}
+
+.login_form--text_field {
+  margin-top: 13px;
+  width: 100%;
+  height: 41px;
+  display: block;
+  border-width: 1px 1px 5px 1px;
+  border-style: solid;
+  border-color: var(--azul-escuro);
+  padding-left: 5px;
+  outline: none;
+  font-size: 0.8rem;
+  font-weight: lighter;
+}
+
+.login_form--keepon {
+  margin-top: 27px;
+} 
+
+.keepon--label {
+  margin-left: 14px;
+}
+
+.login_form--submit{
+  margin-top: 17px;
+  background-color: #6C6EA0;
+  font-size: 1rem;
+  padding: 4px 24px;
+  color: #FEFFFC;
+  outline: none;
+  border: none;
 }
