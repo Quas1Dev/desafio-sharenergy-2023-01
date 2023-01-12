@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+mongoose.set('strictQuery', false);
 
 // Structure declaration for the users collection 
 const UsersDataSchema = new mongoose.Schema({
