@@ -1,10 +1,11 @@
 import mongoose from 'mongoose';
 
+// Structure declaration for the users collection 
 const UsersDataSchema = new mongoose.Schema({
     user: String,
     password: String
 })
 
-const model = mongoose.model('Users', UsersDataSchema);
+const modelForUser = mongoose.model('User', UsersDataSchema);
 
-module.exports = model;
+module.exports = modelForUser;
