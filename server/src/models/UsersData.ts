@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 // Structure declaration for the users collection 
 const UsersDataSchema = new mongoose.Schema({

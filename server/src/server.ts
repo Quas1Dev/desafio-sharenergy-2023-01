@@ -1,10 +1,13 @@
 import express from 'express';
+// This guarantee the dbConfig content gets executed
 import './config/dbConfig';
 
 const app = express();
 
 // Rote to index
-app.get("/login", (req, resp)=>{
+app.get("/confirmLogin", (req, resp)=>{
+
+    const serverEndpoint = "l";
     console.log("Acessou login.");
 
     return resp.json([
