@@ -8,7 +8,7 @@ import ModelForUser from './models/UsersData';
 const app = express();
 
 // Check credentials
-app.post("/confirmLogin", async (req: Request, resp: Response)=>{
+app.get("/confirmLogin", async (req: Request, resp: Response)=>{
     let userExist = await ModelForUser.exists({user: req.query.user, password: req.query.password})
 
     if (userExist) {
