@@ -1,9 +1,17 @@
 import LoginForm from './components/loginform';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <div className="page_container">
-      <LoginForm/>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LoginForm/>}/>
+          <Route path="/httpimage" element={<LoginForm/>}/>
+          <Route path="/randomDogs" element={<LoginForm/>}/>
+          <Route path="/customers" element={<LoginForm/>}/>
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import LoginField from "./loginfield";
-import { useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 function LoginForm() {
     let [form, setForm] = useState({
@@ -8,7 +8,7 @@ function LoginForm() {
         keepon: false,
     });
 
-    function handleChange(e: any) {
+    function handleChange(e: FormEvent) {
         let { name, value, type, checked } = e.target;
 
         setForm(prevForm => ({
@@ -16,6 +16,12 @@ function LoginForm() {
             [name]: type === "checkbox" ? checked : value
         }))
     }
+
+    function handleSubmit(e){
+        e.preventDefault();
+        
+    }
+
 
     return (
         <main className="login_box">
