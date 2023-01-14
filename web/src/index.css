@@ -125,13 +125,57 @@
   padding: 0 40px;
 }
 
-.random_user_page--page_title {
+.page_content--page_title {
   font-weight: 700;
   font-size: 1rem;
 }
 
-.random_user_page--page_description {
+.page_content--page_description {
   font-weight: 400;
   font-size: 0.81rem;
   line-height: 17px;
+}
+
+.page_content--cards_listing {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin-top: 26px;
+}
+
+.card_listing--user_card {
+  flex-basis: 50%;
+  padding: 24px 0;
+  margin-top: 20px;
+  border-width: 0px 0px 0px 44px;
+  border-color: var(--azul-escuro);
+  border-style: solid;
+  position: relative;
+}
+
+.user_card--user_image {
+  display: inline-block;
+  width: 60px 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: absolute;
+  left: -30px;
+}
+
+.user_card--user_infos {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20%;
+}
+
+.user_infos--info {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  /* identical to box height */
+
+
+  color: rgba(0, 0, 0, 0.5);
+
 }
