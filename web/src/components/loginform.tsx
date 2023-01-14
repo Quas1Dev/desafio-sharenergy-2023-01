@@ -61,7 +61,7 @@ function LoginForm() {
 
     return (
         <main className="login_box" >
-            {!user && <span>Por favor, entre com usuário e senha válidos.</span>}
+            {!user && <span className="login_box--warning">Usuário ou senha incorretos! Por favor, tente novamente.</span>}
             <h1 className="login_box--title">Login</h1>
             <form action="#" className="login_box--login_form" onSubmit={handleSubmit}>
                 <div>
