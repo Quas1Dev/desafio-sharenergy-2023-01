@@ -10,14 +10,10 @@ app.use(cors());
 app.use(express.json());
 
 // Check credentials
-app.get("/confirmLogin", async (req: Request, resp: Response)=>{
-    let userExist = await ModelForUser.exists({user: req.query.user, password: req.query.password});
+app.post("/confirmLogin", async (req: Request, resp: Response)=>{
+    const userExist = await ModelForUser.exists({user: req.body.user, password: req.body.password});
     
-    if (userExist) {
-        return resp.json({isRegistered: true});
-    }
-
-    return resp.json({isRegistered: false});
+    return resp.json(userExist);
 })
 
 app.get("/", (req, resp)=>{
