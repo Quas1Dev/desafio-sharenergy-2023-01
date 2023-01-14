@@ -1,6 +1,15 @@
+import { useEffect, useState } from "react"
+import axios from "axios"
 import Navigation from "./Navigation"
 
 export default function RandomUser() {
+    const [randomUsers, setRandomUsers] = useState();
+
+    useEffect(()=>{
+        axios.get("https://randomuser.me/api/?results=56")
+        .then(resp => setRandomUsers(resp.data.results));
+    },[])
+
     return (
         <div className="page_container--random_user_page">
             <Navigation/>
