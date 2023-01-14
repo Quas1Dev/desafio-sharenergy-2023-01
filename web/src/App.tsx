@@ -7,6 +7,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoginForm/>}/>
+          <Route path="/randomuser" element={<LoginForm/>}/>
           <Route path="/httpimage" element={<LoginForm/>}/>
           <Route path="/randomDogs" element={<LoginForm/>}/>
           <Route path="/customers" element={<LoginForm/>}/>
