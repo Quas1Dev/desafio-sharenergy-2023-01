@@ -31,7 +31,9 @@ function LoginForm() {
         axios.post("http://localhost:3333/confirmLogin", form).then(resp => {
             console.log(JSON.stringify(resp.data))
             setUser(resp.data);
-            localStorage.setItem('user', JSON.stringify(resp.data));
+            if (form.keepon) {
+               localStorage.setItem('user', JSON.stringify(resp.data));
+            }
         });
 
         // fetch(url).then(resp => resp.json()).then(data => {
