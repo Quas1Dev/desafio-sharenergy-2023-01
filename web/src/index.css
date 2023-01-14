@@ -110,23 +110,28 @@
   gap: 20px;
   list-style: none;
   justify-content: center;
+  padding: 22px;
 }
 
 .list_of_links--link {
   font-weight: 700;
-  font-size: 14px;
+  font-size: 0.81rem;
   line-height: 17px;
   color: var(--black);
   text-decoration: none;
 }
 
+.page_container--random_user_page {
+  padding: 0 40px;
+}
+
 .random_user_page--page_title {
   font-weight: 700;
-  font-size: 20px;
+  font-size: 1rem;
 }
 
 .random_user_page--page_description {
   font-weight: 400;
-  font-size: 14px;
+  font-size: 0.81rem;
   line-height: 17px;
 }
