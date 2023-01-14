@@ -13,14 +13,13 @@ export default function RandomUser() {
                 const res = resp.data.results;
 
                 for (let i = 0; i < res.length; i++) {
-                    setRandomUsers(prevRandomUsers => {
-
+                    setRandomUsers(prevRandomUsers => {              
                         const user: any = {
                             name: res[i].name.first + " " + res[i].name.last,
                             age: res[i].registered.age,
                             email: res[i].email,
                             image: res[i].picture.medium,
-                            user: res[i].login.username,
+                            username: res[i].login.username,
                             key: nanoid()
                         }
 
