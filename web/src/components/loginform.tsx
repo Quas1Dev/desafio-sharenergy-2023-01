@@ -1,6 +1,6 @@
-import LoginField from "./loginfield";
-import { FormEvent , useEffect, useState, ChangeEvent } from "react";
+import { FormEvent, useEffect, useState, ChangeEvent } from "react";
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios';
 
 function LoginForm() {
 
@@ -10,9 +10,9 @@ function LoginForm() {
         keepon: false,
     });
 
-    const [userDenied, setUserDenied] = useState(false)
+    const [user, setUser] = useState();
 
-    function handleChange(e: ChangeEvent<HTMLInputElement> ) {
+    function handleChange(e: ChangeEvent<HTMLInputElement>) {
         let { name, value, type, checked } = e.target;
 
         setForm(prevForm => ({
@@ -26,29 +26,38 @@ function LoginForm() {
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        const url = "http://localhost:3333/confirmLogin/?user=" + form.user + "&password=" + form.password;
-        
-        fetch(url).then(resp => resp.json()).then(data => {
+        // const url = "http://localhost:3333/confirmLogin/?user=" + form.user + "&password=" + form.password;
 
+        axios.post("http://localhost:3333/confirmLogin", form).then(resp => {
+            console.log(JSON.stringify(resp.data))
+            setUser(resp.data);
+            localStorage.setItem('user', JSON.stringify(resp.data));
+        });
 
-            if (data["isRegistered"]) {
-                saveUser(data)
-                navigate('/httpimage');
-            } else {
-                setUserDenied(true);
-            }
-        })
+        // fetch(url).then(resp => resp.json()).then(data => {
+        //     setUser(data);
+        // })
     }
 
-    function saveUser(data: any ){
+    function saveUser(data: any) {
         window.localStorage.setItem("user", data);
     }
-    /*
-    // if (!userDenied) {
-    //     console.log("redirecting")
-    //     navigate("/httpimage")
+
+    useEffect(() => {
+        const loggedInUser = localStorage.getItem("user");
+
+        if (loggedInUser) {
+
+            const foundUser = JSON.parse(loggedInUser);
+
+            setUser(foundUser);
+        }
+    }, [])
+
+    // if (user) {
+    //     console.log("redirecting");
+    //     navigate("/randomuser");
     // }
-    */
 
     return (
         <main className="login_box" >
@@ -78,10 +87,12 @@ function LoginForm() {
                         className="keepon--label"
                         value={form.keepon}
                         onChange={handleChange}>Mantenha-me conectado</label>
+
                 </div>
+
                 <button className="login_form--submit">Enviar</button>
             </form>
-            {userDenied && <span>Por favor, entre com usuário e senha válidos.</span>}
+            {!user && <span>Por favor, entre com usuário e senha válidos.</span>}
         </main>
     )
 }
