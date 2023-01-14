@@ -1,16 +1,9 @@
-import { Link } from "react-router-dom"
+import Navigation from "./Navigation"
 
 export default function RandomUser() {
     return (
-        <div>
-            <nav>
-                <ul>
-                    <li><Link to="/randomusers"> Lista de Usuários </Link></li>
-                    <li><Link to="/randomusers"> Gerador de imagem HTTP </Link></li>
-                    <li><Link to="/randomusers"> Cachorro aleatório </Link></li>
-                    <li><Link to="/randomusers"> CRUID </Link></li>
-                </ul>
-            </nav>
+        <div className="page_container--random_user_page">
+            <Navigation/>
             <main>
                 <h1>Lista de Usuários</h1>
                 <p>As informações nessa lista de usuário foram geradas automáticamente usando a API  Random User Generator. Você pode usar a caixa de pesquisa para  procurar  por usuários especificos na lista.</p>
