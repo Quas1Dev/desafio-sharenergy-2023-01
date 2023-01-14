@@ -1,5 +1,5 @@
 import express, { Request, Response }  from 'express';
-import cors from 'cors'
+import cors from 'cors';
 
 // This guarantee the dbConfig content gets executed
 import './config/dbConfig';
@@ -12,7 +12,7 @@ app.use(express.json());
 // Check credentials
 app.get("/confirmLogin", async (req: Request, resp: Response)=>{
     let userExist = await ModelForUser.exists({user: req.query.user, password: req.query.password});
-
+    
     if (userExist) {
         return resp.json({isRegistered: true});
     }
