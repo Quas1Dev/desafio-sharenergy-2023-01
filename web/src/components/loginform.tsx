@@ -3,15 +3,17 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
 function LoginForm() {
-
+    // Form data is kept here.
     const [form, setForm] = useState({
         user: "",
         password: "",
         keepon: false,
     });
 
+    // User id from database should be kept here.
     const [user, setUser] = useState();
 
+    // Control form data update.
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         let { name, value, type, checked } = e.target;
 
@@ -21,13 +23,13 @@ function LoginForm() {
         }))
     }
 
+    // This should be used to navegate to another page.
     const navigate = useNavigate();
 
+    // Here we communicate to our server.
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
-
-        // const url = "http://localhost:3333/confirmLogin/?user=" + form.user + "&password=" + form.password;
-
+        
         axios.post("http://localhost:3333/confirmLogin", form).then(resp => {
             console.log(JSON.stringify(resp.data))
             setUser(resp.data);
@@ -35,16 +37,16 @@ function LoginForm() {
                localStorage.setItem('user', JSON.stringify(resp.data));
             }
         });
-
-        // fetch(url).then(resp => resp.json()).then(data => {
-        //     setUser(data);
-        // })
     }
 
     function saveUser(data: any) {
         window.localStorage.setItem("user", data);
     }
 
+    // If user has alreaady loagged in, and we saved its info
+    // in the local storage, we retrieve the user's info to our
+    // user state, which is used to decide whether we 
+    // display this component or not.
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
 
@@ -56,6 +58,7 @@ function LoginForm() {
         }
     }, [])
 
+    // If there is a user logged in, we send the user to the next page.
     // if (user) {
     //     console.log("redirecting");
     //     navigate("/randomuser");
