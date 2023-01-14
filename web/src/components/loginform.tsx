@@ -61,6 +61,7 @@ function LoginForm() {
 
     return (
         <main className="login_box" >
+            {!user && <span>Por favor, entre com usuário e senha válidos.</span>}
             <h1 className="login_box--title">Login</h1>
             <form action="#" className="login_box--login_form" onSubmit={handleSubmit}>
                 <div>
@@ -92,7 +93,7 @@ function LoginForm() {
 
                 <button className="login_form--submit">Enviar</button>
             </form>
-            {!user && <span>Por favor, entre com usuário e senha válidos.</span>}
+            
         </main>
     )
 }
