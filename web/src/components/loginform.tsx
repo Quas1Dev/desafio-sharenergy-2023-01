@@ -29,12 +29,12 @@ function LoginForm() {
     // Here we communicate to our server.
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        
+
         axios.post("http://localhost:3333/confirmLogin", form).then(resp => {
             console.log(JSON.stringify(resp.data))
             setUser(resp.data);
             if (form.keepon) {
-               localStorage.setItem('user', JSON.stringify(resp.data));
+                localStorage.setItem('user', JSON.stringify(resp.data));
             }
         });
     }
@@ -65,41 +65,43 @@ function LoginForm() {
     }
 
     return (
-        <main className="login_box" >
-            {!user && <span className="login_box--warning">Usuário ou senha incorretos! Por favor, tente novamente.</span>}
-            <h1 className="login_box--title">Login</h1>
-            <form action="#" className="login_box--login_form" onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="user" className="login_form--field_name">Usuário:</label>
-                    <input type="text"
-                        name="user"
-                        className="login_form--text_field"
-                        onChange={handleChange}
-                        value={form.user} />
-                </div>
+        <div className="page_container--login_page">
+            <main className="login_box" >
+                {!user && <span className="login_box--warning">Usuário ou senha incorretos! Por favor, tente novamente.</span>}
+                <h1 className="login_box--title">Login</h1>
+                <form action="#" className="login_box--login_form" onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor="user" className="login_form--field_name">Usuário:</label>
+                        <input type="text"
+                            name="user"
+                            className="login_form--text_field"
+                            onChange={handleChange}
+                            value={form.user} />
+                    </div>
 
-                <div>
-                    <label htmlFor="password" className="login_form--field_name">Senha:</label>
-                    <input type="password"
-                        name="password"
-                        className="login_form--text_field"
-                        value={form.password}
-                        onChange={handleChange} />
-                </div>
+                    <div>
+                        <label htmlFor="password" className="login_form--field_name">Senha:</label>
+                        <input type="password"
+                            name="password"
+                            className="login_form--text_field"
+                            value={form.password}
+                            onChange={handleChange} />
+                    </div>
 
-                <div className="login_form--keepon">
-                    <input type="checkbox" name="keepon" />
-                    <label htmlFor="keepon"
-                        className="keepon--label"
-                        value={form.keepon}
-                        onChange={handleChange}>Mantenha-me conectado</label>
+                    <div className="login_form--keepon">
+                        <input type="checkbox" name="keepon" />
+                        <label htmlFor="keepon"
+                            className="keepon--label"
+                            value={form.keepon}
+                            onChange={handleChange}>Mantenha-me conectado</label>
 
-                </div>
+                    </div>
 
-                <button className="login_form--submit">Enviar</button>
-            </form>
-            
-        </main>
+                    <button className="login_form--submit">Enviar</button>
+                </form>
+
+            </main>
+        </div>
     )
 }
 
