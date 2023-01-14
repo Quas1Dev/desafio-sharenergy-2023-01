@@ -59,10 +59,10 @@ function LoginForm() {
     }, [])
 
     // If there is a user logged in, we send the user to the next page.
-    // if (user) {
-    //     console.log("redirecting");
-    //     navigate("/randomuser");
-    // }
+    if (user) {
+        console.log("redirecting");
+        navigate("/randomuser");
+    }
 
     return (
         <main className="login_box" >
