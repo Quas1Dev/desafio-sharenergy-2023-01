@@ -119,3 +119,14 @@
   color: var(--black);
   text-decoration: none;
 }
+
+.random_user_page--page_title {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.random_user_page--page_description {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
