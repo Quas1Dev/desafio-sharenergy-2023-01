@@ -8,7 +8,7 @@
   --azul-escuro: #6C6EA0;
   --azul-claro: #66C7F4;
   --cinza: #66C7F4;
-
+  --black: #000;
 
 }
 
@@ -102,4 +102,20 @@
   /* identical to box height */
 
   color: #FF4040;
+}
+
+.site_menu--list_of_links {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  list-style: none;
+  justify-content: center;
+}
+
+.list_of_links--link {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--black);
+  text-decoration: none;
 }
