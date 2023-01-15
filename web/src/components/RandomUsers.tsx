@@ -46,12 +46,25 @@ export default function RandomUser() {
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
     const currentUsers = randomUsers.slice(indexOfFirstUser, indexOfLastUser);
+    const [searchList, setSearchList] = useState([]);
 
-    function handleChange (e : ChangeEvent<HTMLInputElement>) {
+    function handleChange(e: ChangeEvent<HTMLInputElement>) {
         const value = e.target.value;
-        console.log("New value:", value);
-        setSearchInput(prevSearchInput => prevSearchInput + value);
+        setSearchList((prevSearchList) => {
+            let newRandomUsers = randomUsers.filter((randomUser) => {
+                if (randomUser.name.toLowerCase().match(value.toLowerCase()) ||
+                    randomUser.email.toLowerCase().match(value.toLowerCase()) ||
+                    randomUser.username.toLowerCase().match(value.toLowerCase())) {
+                    return randomUser;
+                }
+            });
+            return newRandomUsers;
+        });
+        
+        setSearchInput(value);
     }
+
+    console.log("Search list ", searchList);
 
     return (
         <div className="page_container--random_user_page">
@@ -60,9 +73,9 @@ export default function RandomUser() {
                 <h1 className="page_content--page_title">Lista de Usuários</h1>
                 <p className="page_content--page_description">As informações nessa lista de usuário foram geradas automáticamente usando a API  Random User Generator. Você pode usar a caixa de pesquisa para  procurar  por usuários especificos na lista.</p>
 
-                <SearchBox handleChange={handleChange} searchInput={searchInput}/>
-                
-                <UsersDisplay users={currentUsers} loading={loading}/>
+                <SearchBox handleChange={handleChange} searchInput={searchInput} />
+
+                <UsersDisplay users={searchList.length == 0 ? currentUsers : searchList} loading={loading} />
 
                 <Pagination totalUsers={randomUsers.length} usersPerPage={usersPerPage}
                     currentPage={currentPage}
