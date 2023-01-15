@@ -140,6 +140,7 @@
   display: flex;
   flex-wrap: wrap;
   max-width: 800px;
+  margin: auto;
   margin-top: 26px;
 }
 
@@ -178,4 +179,26 @@
 
   color: rgba(0, 0, 0, 0.5);
 
+}
+
+.post_listing--pagination {
+  display: flex; 
+  gap: 17px;
+  justify-content: center;
+  margin: 13px;
+}
+
+.pagination--index {
+  width: 20px;
+  height: 18px;
+  border-radius: 50%;
+
+  border: 0.5px solid #6C6EA0;
+  flex-shrink: 0;
+
+  cursor: pointer !important;
+}
+
+.pagination--index_selected {
+  background: #6C6EA0;
 }
