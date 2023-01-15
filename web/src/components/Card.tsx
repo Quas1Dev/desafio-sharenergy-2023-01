@@ -11,7 +11,6 @@ export interface RandomUserData {
 }
 
 export default function Card(props: RandomUserData) {
-    console.log("props username:", props.username)
     return (
         <div className="card_listing--user_card">
             <div className="user_card--user_image">
