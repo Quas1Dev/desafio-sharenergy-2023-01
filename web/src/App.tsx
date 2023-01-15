@@ -1,5 +1,5 @@
-import LoginForm from './components/loginform';
-import RandomUser from './components/randomuser';
+import LoginForm from './components/LoginForm';
+import RandomUser from './components/RandomUsers';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {

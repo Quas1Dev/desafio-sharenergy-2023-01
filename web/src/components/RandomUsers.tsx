@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react"
-import axios from "axios"
-import Navigation from './global-components/Navigation'
+import axios from "axios";
 import { nanoid } from "nanoid";
-import UsersDisplay from "./random-users-page-components/UsersDisplay";
 import { RandomUserData } from "./random-users-page-components/Card";
-import Pagination from './random-users-page-components/Pagination';
+
+import Navigation from './global-components/Navigation'
+import UsersDisplay from "./random-users-page-components/UsersDisplay";
+import Pagination from "./random-users-page-components/Pagination";
+import SearchBox from "./random-users-page-components/SearchBox";
 
 export default function RandomUser() {
     const [randomUsers, setRandomUsers] = useState<RandomUserData[]>([]);
@@ -44,7 +46,7 @@ export default function RandomUser() {
             <main className="random_user_page--page_content">
                 <h1 className="page_content--page_title">Lista de Usuários</h1>
                 <p className="page_content--page_description">As informações nessa lista de usuário foram geradas automáticamente usando a API  Random User Generator. Você pode usar a caixa de pesquisa para  procurar  por usuários especificos na lista.</p>
-
+                <SearchBox/>
                 <UsersDisplay users={currentUsers} />
 
                 <Pagination totalUsers={randomUsers.length} usersPerPage={usersPerPage}
