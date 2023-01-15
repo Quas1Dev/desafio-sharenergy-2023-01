@@ -140,18 +140,22 @@
   display: flex;
   flex-wrap: wrap;
   max-width: 800px;
+  height: 544px;
   margin: auto;
   margin-top: 26px;
+
 }
 
 .card_listing--user_card {
   flex-basis: 50%;
+  align-self: flex-start;
   padding: 24px 0;
   margin-top: 20px;
   border-width: 0px 0px 0px 44px;
   border-color: var(--azul-escuro);
   border-style: solid;
   position: relative;
+  box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .user_card--user_image {
