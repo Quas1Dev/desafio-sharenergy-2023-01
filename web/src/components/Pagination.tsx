@@ -1,16 +1,19 @@
 interface PaginationInterface {
-    usersPerPage : number;
-    totalUsers : number;
+    usersPerPage: number;
+    totalUsers: number;
+    currentPage: number;
+    setCurrentPage: Function;
 }
 
-export default function Pagination({usersPerPage, totalUsers} : PaginationInterface){
+export default function Pagination({ usersPerPage, totalUsers, currentPage, setCurrentPage }: PaginationInterface) {
     let pageNumbers = [];
     for (let i = 1; i <= (Math.ceil(totalUsers / usersPerPage)); i++) {
         pageNumbers.push(i);
     }
 
-    const pageNumbersIcons = pageNumbers.map((controller) => {
-        return <div className="pagination--controller">{controller}</div>
+    const pageNumbersIcons = pageNumbers.map((number) => {
+        return <div className={"pagination--index " +
+         (currentPage == number ? "pagination--index_selected" : "")}></div>
     });
 
     return (
