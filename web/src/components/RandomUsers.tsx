@@ -10,8 +10,8 @@ import SearchBox from "./random-users-page-components/SearchBox";
 
 export default function RandomUser() {
     const [randomUsers, setRandomUsers] = useState<RandomUserData[]>([]);
-    const [searchList, setSearchList] = useState([]);
-
+    const [searchList, setSearchList] = useState<RandomUserData[]>([]);
+    
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [usersPerPage, setUsersPerPage] = useState(8);
