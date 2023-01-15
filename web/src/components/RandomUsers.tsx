@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { ChangeEvent, useEffect, useState } from "react"
 import axios from "axios";
 import { nanoid } from "nanoid";
 import { RandomUserData } from "./random-users-page-components/Card";
@@ -10,35 +10,48 @@ import SearchBox from "./random-users-page-components/SearchBox";
 
 export default function RandomUser() {
     const [randomUsers, setRandomUsers] = useState<RandomUserData[]>([]);
+    const [loading, setLoading] = useState(false);
+
     const [currentPage, setCurrentPage] = useState(1);
     const [usersPerPage, setUsersPerPage] = useState(8);
+    const [searchInput, setSearchInput] = useState("");
 
     useEffect(() => {
-        axios.get("https://randomuser.me/api/?results=40")
-            .then(resp => {
-                const res = resp.data.results;
+        const fetchUsers = async () => {
+            setLoading(true);
+            const response = await axios.get("https://randomuser.me/api/?results=40");
+            const usersList = response.data.results;
+            setLoading(false);
 
-                for (let i = 0; i < res.length; i++) {
-                    setRandomUsers(prevRandomUsers => {
-                        const user: any = {
-                            name: res[i].name.first + " " + res[i].name.last,
-                            age: res[i].registered.age,
-                            email: res[i].email,
-                            image: res[i].picture.medium,
-                            username: res[i].login.username,
-                            key: nanoid()
-                        }
+            for (let i = 0; i < usersList.length; i++) {
+                setRandomUsers(prevRandomUsers => {
+                    const user: any = {
+                        name: usersList[i].name.first + " " + usersList[i].name.last,
+                        age: usersList[i].registered.age,
+                        email: usersList[i].email,
+                        image: usersList[i].picture.medium,
+                        username: usersList[i].login.username,
+                        key: nanoid()
+                    }
 
-                        return [...prevRandomUsers, user]
-                    })
+                    return [...prevRandomUsers, user]
+                })
 
-                }
-            });
+            }
+
+        }
+        fetchUsers();
     }, []);
 
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
     const currentUsers = randomUsers.slice(indexOfFirstUser, indexOfLastUser);
+
+    function handleChange (e : ChangeEvent<HTMLInputElement>) {
+        const value = e.target.value;
+        console.log("New value:", value);
+        setSearchInput(prevSearchInput => prevSearchInput + value);
+    }
 
     return (
         <div className="page_container--random_user_page">
@@ -46,12 +59,14 @@ export default function RandomUser() {
             <main className="random_user_page--page_content">
                 <h1 className="page_content--page_title">Lista de Usuários</h1>
                 <p className="page_content--page_description">As informações nessa lista de usuário foram geradas automáticamente usando a API  Random User Generator. Você pode usar a caixa de pesquisa para  procurar  por usuários especificos na lista.</p>
-                <SearchBox/>
-                <UsersDisplay users={currentUsers} />
+
+                <SearchBox handleChange={handleChange} searchInput={searchInput}/>
+                
+                <UsersDisplay users={currentUsers} loading={loading}/>
 
                 <Pagination totalUsers={randomUsers.length} usersPerPage={usersPerPage}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}/>
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage} />
             </main>
         </div>
     )

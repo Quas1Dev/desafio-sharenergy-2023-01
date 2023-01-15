@@ -1,3 +1,5 @@
+import { nanoid } from "nanoid";
+
 interface PaginationInterface {
     usersPerPage: number;
     totalUsers: number;
@@ -14,7 +16,8 @@ export default function Pagination({ usersPerPage, totalUsers, currentPage, setC
     const pageNumbersIcons = pageNumbers.map((number) => {
         return <div className={"pagination--index " +
             (currentPage == number ? "pagination--index_selected" : "")}
-            onClick={()=> setCurrentPage(number)}></div>
+            onClick={()=> setCurrentPage(number)}
+            key={nanoid()}></div>
     });
 
     return (

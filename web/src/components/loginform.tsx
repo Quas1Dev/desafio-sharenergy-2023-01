@@ -31,30 +31,29 @@ function LoginForm() {
         e.preventDefault();
 
         const checkUser = async () => {
-            console.log("Checking user.")
+
             const response = await axios.post("http://localhost:3333/confirmLogin", form);
 
             setUser((prevUser) => {
 
                 // React ^16 does not refresh when state is set to null.
                 // So we map a null value to 0. *1
-                
-                if(response.data == null){ 
-                    response.data = 0;    
+
+                if (response.data == null) {
+                    response.data = 0;
                 }
 
                 if (form.keepon) {
-                    console.log("Saved user.")
                     localStorage.setItem('user', JSON.stringify(response.data));
                 }
-                
-                console.log("Registering user:", response.data)
+
+
                 return response.data;
             });
-           
+
         }
 
-        console.log("Calling function to check user.")
+
         checkUser();
     }
 
@@ -62,22 +61,22 @@ function LoginForm() {
       This should make the user "always on" *2
     */
     useEffect(() => {
-        const loggedInUser = localStorage.getItem('user');
-        console.log("User previously logged in:", loggedInUser);
+        const loggedInUser = localStorage.getItem("user");
 
         if (loggedInUser) {
+
             const foundUser = JSON.parse(loggedInUser);
+
             setUser(foundUser);
         }
     }, [])
 
     // Redirect logged in user.
     if (user) {
-        console.log("redirecting");
+
         navigate("/randomuser");
     }
 
-    console.log("Equal to undefined and equal to null:", user != undefined && user == null);
     return (
         <div className="page_container--login_page">
             <main className="login_box" >

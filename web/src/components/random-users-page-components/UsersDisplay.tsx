@@ -1,10 +1,15 @@
 import Card, { RandomUserData } from "./Card";
 
 interface UserDisplayInterface {
-    users: RandomUserData[]
+    users: RandomUserData[];
+    loading: boolean;
 }
 
-export default function UsersDisplay({ users }: UserDisplayInterface) {
+export default function UsersDisplay({ users, loading }: UserDisplayInterface) {
+    if (loading){
+        return <h2>Carregando...</h2>
+    }
+
     const userCards = users.map((user: RandomUserData) => {
         return <Card
             name={user.name}
