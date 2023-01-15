@@ -1,5 +1,3 @@
-import { User, IdentificationBadge, Envelope, Calendar } from 'phosphor-react'
-
 export interface RandomUserData {
     name: string;
     email: string;
