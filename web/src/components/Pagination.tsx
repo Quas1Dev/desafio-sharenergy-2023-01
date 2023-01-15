@@ -4,18 +4,18 @@ interface PaginationInterface {
 }
 
 export default function Pagination({usersPerPage, totalUsers} : PaginationInterface){
-    let controllers = [];
+    let pageNumbers = [];
     for (let i = 1; i <= (Math.ceil(totalUsers / usersPerPage)); i++) {
-        controllers.push(i);
+        pageNumbers.push(i);
     }
 
-    const controlersIcons = controllers.map((controller) => {
+    const pageNumbersIcons = pageNumbers.map((controller) => {
         return <div className="pagination--controller">{controller}</div>
     });
 
     return (
         <div className="post_listing--pagination">
-            {controlersIcons}
+            {pageNumbersIcons}
         </div>
     )
 }
