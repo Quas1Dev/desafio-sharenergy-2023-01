@@ -30,44 +30,58 @@ function LoginForm() {
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        axios.post("http://localhost:3333/confirmLogin", form).then(resp => {
-            console.log(JSON.stringify(resp.data))
-            setUser(resp.data);
-            if (form.keepon) {
-                localStorage.setItem('user', JSON.stringify(resp.data));
-            }
-        });
+        const checkUser = async () => {
+            console.log("Checking user.")
+            const response = await axios.post("http://localhost:3333/confirmLogin", form);
+
+            setUser((prevUser) => {
+
+                // React ^16 does not refresh when state is set to null.
+                // So we map a null value to 0. *1
+                
+                if(response.data == null){ 
+                    response.data = 0;    
+                }
+
+                if (form.keepon) {
+                    console.log("Saved user.")
+                    localStorage.setItem('user', JSON.stringify(response.data));
+                }
+                
+                console.log("Registering user:", response.data)
+                return response.data;
+            });
+           
+        }
+
+        console.log("Calling function to check user.")
+        checkUser();
     }
 
-    function saveUser(data: any) {
-        window.localStorage.setItem("user", data);
-    }
-
-    // If user has alreaady loagged in, and we saved its info
-    // in the local storage, we retrieve the user's info to our
-    // user state, which is used to decide whether we 
-    // display this component or not.
+    /* 
+      This should make the user "always on" *2
+    */
     useEffect(() => {
-        const loggedInUser = localStorage.getItem("user");
+        const loggedInUser = localStorage.getItem('user');
+        console.log("User previously logged in:", loggedInUser);
 
         if (loggedInUser) {
-
             const foundUser = JSON.parse(loggedInUser);
-
             setUser(foundUser);
         }
     }, [])
 
-    // If there is a user logged in, we send the user to the next page.
+    // Redirect logged in user.
     if (user) {
         console.log("redirecting");
         navigate("/randomuser");
     }
 
+    console.log("Equal to undefined and equal to null:", user != undefined && user == null);
     return (
         <div className="page_container--login_page">
             <main className="login_box" >
-                {!user && <span className="login_box--warning">Usuário ou senha incorretos! Por favor, tente novamente.</span>}
+                {user != undefined && user == 0 && <span className="login_box--warning">Usuário ou senha incorretos! Por favor, tente novamente.</span>}
                 <h1 className="login_box--title">Login</h1>
                 <form action="#" className="login_box--login_form" onSubmit={handleSubmit}>
                     <div>
@@ -106,3 +120,17 @@ function LoginForm() {
 }
 
 export default LoginForm;
+
+
+/*
+Dev's comments
+
+*1 - The user is set to null in case the login was unsuccessful.
+We need React to refresh when this is the case so we may display 
+the warning.
+
+*2 - If user has already logged in, and we saved its info
+in the local storage, we retrieve the user's info to our
+user state, which is used to decide whether we display 
+this component or not.
+*/
