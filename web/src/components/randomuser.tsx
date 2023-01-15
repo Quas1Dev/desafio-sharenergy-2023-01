@@ -2,13 +2,14 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import Navigation from "./Navigation"
 import { nanoid } from "nanoid";
-import Posts from "./Posts";
+import UsersDisplay from "./UsersDisplay";
 import { RandomUserData } from "./Card";
+import Pagination from './Pagination';
 
 export default function RandomUser() {
     const [randomUsers, setRandomUsers] = useState<RandomUserData[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostPerPage] = useState(8);
+    const [usersPerPage, setUsersPerPage] = useState(8);
 
     useEffect(() => {
         axios.get("https://randomuser.me/api/?results=56")
@@ -33,8 +34,8 @@ export default function RandomUser() {
             });
     }, []);
 
-    const indexOfLastUser = currentPage * postsPerPage;
-    const indexOfFirstUser = indexOfLastUser - postsPerPage;
+    const indexOfLastUser = currentPage * usersPerPage;
+    const indexOfFirstUser = indexOfLastUser - usersPerPage;
     const currentUsers = randomUsers.slice(indexOfFirstUser, indexOfLastUser);
 
     return (
@@ -44,8 +45,8 @@ export default function RandomUser() {
                 <h1 className="page_content--page_title">Lista de Usuários</h1>
                 <p className="page_content--page_description">As informações nessa lista de usuário foram geradas automáticamente usando a API  Random User Generator. Você pode usar a caixa de pesquisa para  procurar  por usuários especificos na lista.</p>
 
-                <Posts users={currentUsers} />
-                <Pagination />
+                <UsersDisplay users={currentUsers} />
+                <Pagination totalUsers={randomUsers.length} usersPerPage={usersPerPage}/>
             </main>
         </div>
     )
