@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
-import Navigation from "./Navigation"
+import Navigation from './global-components/Navigation'
 import { nanoid } from "nanoid";
-import UsersDisplay from "./UsersDisplay";
-import { RandomUserData } from "./Card";
-import Pagination from './Pagination';
+import UsersDisplay from "./random-users-page-components/UsersDisplay";
+import { RandomUserData } from "./random-users-page-components/Card";
+import Pagination from './random-users-page-components/Pagination';
 
 export default function RandomUser() {
     const [randomUsers, setRandomUsers] = useState<RandomUserData[]>([]);
