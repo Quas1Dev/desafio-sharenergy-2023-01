@@ -13,7 +13,8 @@ export default function Pagination({ usersPerPage, totalUsers, currentPage, setC
 
     const pageNumbersIcons = pageNumbers.map((number) => {
         return <div className={"pagination--index " +
-         (currentPage == number ? "pagination--index_selected" : "")}></div>
+            (currentPage == number ? "pagination--index_selected" : "")}
+            onClick={()=> setCurrentPage(number)}></div>
     });
 
     return (
