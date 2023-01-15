@@ -10,8 +10,9 @@ import SearchBox from "./random-users-page-components/SearchBox";
 
 export default function RandomUser() {
     const [randomUsers, setRandomUsers] = useState<RandomUserData[]>([]);
-    const [loading, setLoading] = useState(false);
+    const [searchList, setSearchList] = useState([]);
 
+    const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [usersPerPage, setUsersPerPage] = useState(8);
     const [searchInput, setSearchInput] = useState("");
@@ -42,11 +43,14 @@ export default function RandomUser() {
         }
         fetchUsers();
     }, []);
+    
 
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    const currentUsers = randomUsers.slice(indexOfFirstUser, indexOfLastUser);
-    const [searchList, setSearchList] = useState([]);
+    const currentUsers = searchList.length == 0 ? 
+    randomUsers.slice(indexOfFirstUser, indexOfLastUser):
+    searchList.slice(indexOfFirstUser, indexOfLastUser);
+    
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         const value = e.target.value;
@@ -64,8 +68,6 @@ export default function RandomUser() {
         setSearchInput(value);
     }
 
-    console.log("Search list ", searchList);
-
     return (
         <div className="page_container--random_user_page">
             <Navigation />
@@ -75,7 +77,7 @@ export default function RandomUser() {
 
                 <SearchBox handleChange={handleChange} searchInput={searchInput} />
 
-                <UsersDisplay users={searchList.length == 0 ? currentUsers : searchList} loading={loading} />
+                <UsersDisplay users={currentUsers} loading={loading} />
 
                 <Pagination totalUsers={randomUsers.length} usersPerPage={usersPerPage}
                     currentPage={currentPage}
