@@ -44,9 +44,10 @@ function LoginForm() {
                 }
 
                 if (form.keepon) {
+                    console.log("Saving user ", response.data);
                     localStorage.setItem('user', JSON.stringify(response.data));
                 }
-
+                
 
                 return response.data;
             });
@@ -102,11 +103,13 @@ function LoginForm() {
                     </div>
 
                     <div className="login_form--keepon">
-                        <input type="checkbox" name="keepon" />
+                        <input type="checkbox" 
+                        name="keepon" 
+                        checked={form.keepon} 
+                        onChange={handleChange}
+                        />
                         <label htmlFor="keepon"
-                            className="keepon--label"
-                            value={form.keepon}
-                            onChange={handleChange}>Mantenha-me conectado</label>
+                            className="keepon--label">Mantenha-me conectado</label>
 
                     </div>
 
