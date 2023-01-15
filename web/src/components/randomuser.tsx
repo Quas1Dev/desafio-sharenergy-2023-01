@@ -12,7 +12,7 @@ export default function RandomUser() {
     const [usersPerPage, setUsersPerPage] = useState(8);
 
     useEffect(() => {
-        axios.get("https://randomuser.me/api/?results=56")
+        axios.get("https://randomuser.me/api/?results=40")
             .then(resp => {
                 const res = resp.data.results;
 
@@ -46,7 +46,10 @@ export default function RandomUser() {
                 <p className="page_content--page_description">As informações nessa lista de usuário foram geradas automáticamente usando a API  Random User Generator. Você pode usar a caixa de pesquisa para  procurar  por usuários especificos na lista.</p>
 
                 <UsersDisplay users={currentUsers} />
-                <Pagination totalUsers={randomUsers.length} usersPerPage={usersPerPage}/>
+
+                <Pagination totalUsers={randomUsers.length} usersPerPage={usersPerPage}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}/>
             </main>
         </div>
     )
