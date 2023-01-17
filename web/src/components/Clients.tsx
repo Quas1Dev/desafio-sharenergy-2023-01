@@ -11,20 +11,16 @@ export default function Clients() {
 
     useEffect(() => {
         const fetchClients = async () => {
-            const response = await axios.get("http://localhost:3333/fetchClients");
+            const response = await axios.get("http://localhost:3333/read");
             setClients(response.data);
         }
 
         fetchClients()
     }, []);
 
-    function handleClickDelete() {
+    function handleClickDelete() { }
 
-    }
-
-    function handleClickUpdate() {
-
-    }
+    function handleClickUpdate() { }
 
     function handleOpenCloseModal() {
         setIsOpen(prevOpenModal => !prevOpenModal);
@@ -59,18 +55,19 @@ export default function Clients() {
                                 <th>Endereço</th>
                             </tr>
                         </thead>
-
+                        <tbody>
                         {clients.map(client => {
                             return (
-                                <tr>
-                                    <td>client.name</td>
-                                    <td>client.telephone</td>
-                                    <td>client.email</td>
-                                    <td>client.cpf</td>
-                                    <td>client.address</td>
+                                <tr key={client.cpf}>
+                                    <td>{client.name}</td>
+                                    <td>{client.telephone}</td>
+                                    <td>{client.email}</td>
+                                    <td>{client.cpf}</td>
+                                    <td>{client.address}</td>
                                 </tr>
                             )
                         })}
+                        </tbody>
                     </table>
                 }
             </main>
