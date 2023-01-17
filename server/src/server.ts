@@ -19,6 +19,14 @@ app.post("/confirmLogin", async (req: Request, resp: Response)=>{
 
 // Add new client
 app.post("/add", async (req: Request, resp: Response) => {
+
+    // Do not allow duplicate clients
+    const listOfClients = await ModelForClient.find({cpf: req.body.cpf});
+
+    if (listOfClients.length == 0) {
+        return resp.json({userAdded: false});
+    }
+
     const newClient = new ModelForClient({
         name: req.body.name,
         cpf: req.body.cpf,
@@ -30,9 +38,9 @@ app.post("/add", async (req: Request, resp: Response) => {
     const doc = await newClient.save();
 
     if (doc == newClient) {
-        response.json({userAdded: true})
+        resp.json({userAdded: true})
     } else {
-        response.json({userAdded: false});
+        resp.json({userAdded: false});
     }
 })
 
