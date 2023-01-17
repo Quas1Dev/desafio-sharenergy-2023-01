@@ -10,7 +10,7 @@ export default function AddUserForm() {
         cpf: "",
     })
 
-    function handleClickAdd(e: FormEvent<HTMLFormElement>) {
+    function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const addUser = async () => {
@@ -57,7 +57,7 @@ export default function AddUserForm() {
         return value
     }
     return (
-        <form action="" className="modal_add_user--add_user_form">
+        <form action="" className="modal_add_user--add_user_form" onSubmit={handleSubmit}>
             <label htmlFor="name">Nome</label>
             <input type="text"
                 id="name"
@@ -100,7 +100,7 @@ export default function AddUserForm() {
                 className="add_user_form--field"
                 value={addUserForm.address} />
 
-            <button className="add_user_form--submit" onClick={handleClickAdd}>Adicionar</button>
+            <button className="add_user_form--submit">Adicionar</button>
         </form>
     )
 }
