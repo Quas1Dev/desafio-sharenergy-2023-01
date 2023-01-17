@@ -248,3 +248,14 @@
 .page_conent--image_form {
   font-size: 0.88rem;
 }
+
+.random_dog_page--title {
+  font-size: 1rem;
+}
+
+.random_dog_page--image {
+  display: block;
+  max-width: 800px;
+  margin: auto;
+  margin-top: 20px;
+}
