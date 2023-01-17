@@ -23,7 +23,7 @@ app.post("/add", async (req: Request, resp: Response) => {
     // Do not allow duplicate clients
     const listOfClients = await ModelForClient.find({cpf: req.body.cpf});
 
-    if (listOfClients.length == 0) {
+    if (listOfClients.length > 0) {
         return resp.json({userAdded: false});
     }
 

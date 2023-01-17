@@ -1,7 +1,12 @@
 import axios from "axios";
-import {FormEvent, ChangeEvent, useState} from 'react';
+import { FormEvent, ChangeEvent, useState } from 'react';
 
-export default function AddUserForm() {
+interface AddUserFormPropsinterface {
+    setIsOpen: Function;
+    fetchClients: Function;
+}
+
+export default function AddUserForm({ setIsOpen, fetchClients } : AddUserFormPropsinterface) {
     const [addUserForm, setAddUserForm] = useState({
         name: "",
         email: "",
@@ -14,10 +19,11 @@ export default function AddUserForm() {
         e.preventDefault();
 
         const addUser = async () => {
-            const response = axios.post("http://localhost:3333/", addUserForm);
-            console.log(response);
+            const response = await axios.post("http://localhost:3333/add", addUserForm);
+            setIsOpen(false);
+            fetchClients()
         }
-
+        
         addUser();
     }
 
@@ -49,10 +55,10 @@ export default function AddUserForm() {
     }
 
     function maskCpf(value: string): string {
-        value = value.replace(/\D/g, "")                    
-        value = value.replace(/(\d{3})(\d)/, "$1.$2")       
-        value = value.replace(/(\d{3})(\d)/, "$1.$2")       
-        value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2") 
+        value = value.replace(/\D/g, "")
+        value = value.replace(/(\d{3})(\d)/, "$1.$2")
+        value = value.replace(/(\d{3})(\d)/, "$1.$2")
+        value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
         return value
     }
     return (

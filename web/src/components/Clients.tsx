@@ -16,13 +16,13 @@ export default function Clients() {
     const [clients, setClients] = useState<ClientsInterface[]>([]);
     const [isOpen, setIsOpen] = useState(false);
 
+    
+    const fetchClients = async () => {
+        const response = await axios.get("http://localhost:3333/read");
+        setClients(response.data);
+    }
 
     useEffect(() => {
-        const fetchClients = async () => {
-            const response = await axios.get("http://localhost:3333/read");
-            setClients(response.data);
-        }
-
         fetchClients()
     }, []);
 
@@ -48,7 +48,7 @@ export default function Clients() {
                 isOpen={isOpen}
                 onRequestClose={handleOpenCloseModal}
             >
-                <AddUserForm />
+                <AddUserForm setIsOpen={setIsOpen} fetchClients={fetchClients}/>
             </ReactModal>
 
             <main>
