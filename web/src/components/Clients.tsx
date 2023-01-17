@@ -4,8 +4,16 @@ import ReactModal from 'react-modal';
 import Navigation from "./global-components/Navigation"
 import AddUserForm from "./clients-components/AddUserForm";
 
+interface ClientsInterface {
+    name: string,
+    cpf: string,
+    address: string,
+    email: string,
+    telephone: string
+}
+
 export default function Clients() {
-    const [clients, setClients] = useState([]);
+    const [clients, setClients] = useState<ClientsInterface[]>([]);
     const [isOpen, setIsOpen] = useState(false);
 
 
