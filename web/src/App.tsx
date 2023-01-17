@@ -2,6 +2,7 @@ import LoginForm from './components/LoginForm';
 import RandomUser from './components/RandomUsers';
 import HttpImage from './components/HttpImage';
 import RandomDog from './components/RandomDog';
+import Clients from './components/Clients';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -14,7 +15,7 @@ function App() {
           <Route path="/randomuser" element={<RandomUser/>}/>
           <Route path="/httpimage" element={<HttpImage/>}/>
           <Route path="/randomdog" element={<RandomDog/>}/>
-          <Route path="/customers" element={<LoginForm/>}/>
+          <Route path="/clients" element={<Clients/>}/>
         </Routes>
       </BrowserRouter>
     </div>
