@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Navigation from "./global-components/Navigation"
 
 export default function Clients(){
-    const [clients, setClients] = useState();
+    const [clients, setClients] = useState([]);
     
     useEffect(()=>{
         const fetchClients = async ()=>{
@@ -26,11 +26,15 @@ export default function Clients(){
 
     }
     
+    console.log(clients == [])
     return (
         <div className="page_container--clients_page">
             <Navigation />
+            <h1 className="clients_page--title u-title">Clientes</h1>
+
+            <button className="clients_page--add_user">Adicionar usuário</button>
             <main>
-                { clients ?
+                { clients.length > 0 &&
                 <table>
                     <thead>
                     <tr>
@@ -42,7 +46,7 @@ export default function Clients(){
                     </tr>
                     </thead>
                     
-                    {clients != undefined && clients.map(client => {
+                    {clients.map(client => {
                         return(
                             <tr>
                                 <td>client.name</td>
@@ -53,8 +57,7 @@ export default function Clients(){
                             </tr>
                         )
                     })} 
-                </table> :
-                    <button>Add new user.</button>
+                </table>    
                 }
             </main>
         </div>
