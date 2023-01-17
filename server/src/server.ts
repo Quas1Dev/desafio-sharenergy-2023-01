@@ -1,4 +1,4 @@
-import express, { Request, Response }  from 'express';
+import express, { Request, response, Response }  from 'express';
 import cors from 'cors';
 
 // This guarantee the dbConfig content gets executed
@@ -15,13 +15,28 @@ app.post("/confirmLogin", async (req: Request, resp: Response)=>{
     const userExist = await ModelForUser.exists({user: req.body.user, password: req.body.password});
     
     return resp.json(userExist);
+});
+
+// Add new client
+app.post("/add", async (req: Request, resp: Response) => {
+    const newClient = new ModelForClient({
+        name: req.body.name,
+        cpf: req.body.cpf,
+        email: req.body.cpf,
+        telephone: req.body.telephone,
+        address: req.body.address
+    });
+
+    const doc = await newClient.save();
+
+    if (doc == newClient) {
+        response.json({userAdded: true})
+    } else {
+        response.json({userAdded: false});
+    }
 })
 
-app.get("/", (req, resp)=>{
-    return resp.send("Hello");
-})
-
-app.get("/fetchClients", async (req: Request, resp: Response) => {
+app.get("/read", async (req: Request, resp: Response) => {
     const clients = await ModelForClient.find({});
     console.log(clients);
     return resp.json(clients)
