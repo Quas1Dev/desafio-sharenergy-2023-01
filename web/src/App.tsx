@@ -1,6 +1,7 @@
 import LoginForm from './components/LoginForm';
 import RandomUser from './components/RandomUsers';
 import HttpImage from './components/HttpImage';
+import RandomDog from './components/RandomDog';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -12,7 +13,7 @@ function App() {
           <Route path="/" element={<LoginForm/>}/>
           <Route path="/randomuser" element={<RandomUser/>}/>
           <Route path="/httpimage" element={<HttpImage/>}/>
-          <Route path="/randomDogs" element={<LoginForm/>}/>
+          <Route path="/randomdog" element={<RandomDog/>}/>
           <Route path="/customers" element={<LoginForm/>}/>
         </Routes>
       </BrowserRouter>
