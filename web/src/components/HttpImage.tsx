@@ -41,10 +41,8 @@ export default function HttpImage() {
                         className="random_http_image_page--http_code_picker" />
                 </form>
 
-                <div className="main-content--cat_image" style={{textAlign: "center", marginTop: "40px"}}>
-                    <div className="u-square_decorator">
-                        <img src={"https://http.cat/" + pickedCode} alt="" className="random_http_image_page--http_image" />
-                    </div>
+                <div className="u-image_centralizer">
+                    <img src={"https://http.cat/" + pickedCode} alt="" className="random_http_image_page--http_image" />
                 </div>
             </main>
         </div>
