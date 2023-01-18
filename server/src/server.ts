@@ -13,7 +13,8 @@ app.use(express.json());
 
 // Check credentials
 app.post("/confirmLogin", async (req: Request, resp: Response) => {
-    const userExist = await ModelForUser.exists({ user: req.body.user, password: req.body.password });
+    const {user, password} = req.query;
+    const userExist = await ModelForUser.exists({ user, password });
 
     return resp.json(userExist);
 });
@@ -63,7 +64,7 @@ app.put('/update/:id', async (req: Request, resp: Response) => {
 
     if (!client) return resp.json(client);
 
-    if (client && cpf || email || telephone || address || name) {
+    if (cpf || email || telephone || address || name) {
         client.cpf = cpf;
         client.name = name;
         client.email = email;
