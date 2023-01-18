@@ -82,7 +82,7 @@ function LoginForm() {
         <div className="page_container--login_page">
             <main className="login_box" >
                 {user != undefined && user == 0 && <span className="login_box--warning">Usuário ou senha incorretos! Por favor, tente novamente.</span>}
-                <h1 className="login_box--title">Login</h1>
+                <h1 className="login_box--title u-title">Login</h1>
                 <form action="#" className="login_box--login_form" onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor="user" className="login_form--field_name">Usuário:</label>

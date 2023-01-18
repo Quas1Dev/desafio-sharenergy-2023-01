@@ -23,7 +23,7 @@ export default function HttpImage() {
             <Navigation />
             <main className="http_image_page--main_conent">
 
-                <h1 className="main_content--page_title">Gerador de imagem HTTP</h1>
+                <h1 className="main_content--page_title u-title">Gerador de imagem HTTP</h1>
 
                 <form action="#" className="page_conent--image_form">
                     <label htmlFor="http_code_number" className="">Digite um código:  </label>

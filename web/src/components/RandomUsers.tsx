@@ -72,7 +72,7 @@ export default function RandomUser() {
         <div className="page_container--random_user_page">
             <Navigation />
             <main className="random_user_page--page_content">
-                <h1 className="page_content--page_title">Lista de Usuários</h1>
+                <h1 className="page_content--page_title u-title">Lista de Usuários</h1>
                 <p className="page_content--page_description">As informações nessa lista de usuário foram geradas automáticamente usando a API  Random User Generator. Você pode usar a caixa de pesquisa para  procurar  por usuários especificos na lista.</p>
 
                 <SearchBox handleChange={handleChange} searchInput={searchInput} />

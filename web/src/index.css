@@ -17,6 +17,14 @@
   font-size: 20px;
 }
 
+/* Utilities */
+.u-title {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* End utilities */
+
 .page_container {
   margin: auto;
   max-width: 1200px;
@@ -125,11 +133,6 @@
   padding: 0 40px;
 }
 
-.page_content--page_title {
-  font-weight: 700;
-  font-size: 1rem;
-}
-
 .page_content--page_description {
   font-weight: 400;
   font-size: 0.81rem;
@@ -224,10 +227,6 @@
   border-color: var(--azul-escuro);
 }
 
-.main_content--page_title {
-  font-size: 1rem;
-}
-
 .random_http_image--code_options {
   display: inline-block;
   padding: 5px;
@@ -247,10 +246,6 @@
 
 .page_conent--image_form {
   font-size: 0.88rem;
-}
-
-.random_dog_page--title {
-  font-size: 1rem;
 }
 
 .random_dog_page--image {
