@@ -4,7 +4,6 @@ import { ChangeEvent, useEffect, useState } from "react";
 
 export default function HttpImage() {
     const [pickedCode, setPickedCode] = useState(0);
-    const [image, setIamge] = useState();
 
     const httpCodes = []
 
@@ -36,16 +35,6 @@ export default function HttpImage() {
                         onChange={handleChange}
                         className="random_http_image_page--http_code_picker" />
                 </form>
-
-                {/* <label htmlFor="http_code_picker">Digite um código:  </label>
-            <select
-                id="http_code_picker"
-                value={pickedCode}
-                onChange={handleChange}
-                name="favColor" 
-                className="random_http_image_page--http_code_picker">
-                {httpCodes}
-            </select> */}
                 <img src={"https://http.cat/" + pickedCode} alt="" className="random_http_image_page--http_image" />
             </main>
         </div>
