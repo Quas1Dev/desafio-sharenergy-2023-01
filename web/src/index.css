@@ -60,7 +60,7 @@
   background: #FEFFFC;
 }
 
-.login_box {
+.login_page--main_content {
   flex-basis: 500px;
   /* max-width: 500px; */
   margin: auto;
