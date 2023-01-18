@@ -2,12 +2,12 @@ import axios from "axios";
 import FormFields from "./FormFields";
 import { FormEvent, ChangeEvent, useState } from 'react';
 
-interface AddUserFormPropsinterface {
+export interface AddUserFormPropsinterface {
     setIsOpen: Function;
     fetchClients: Function;
 }
 
-interface AddUserFormInterface {
+export interface AddUserFormInterface {
     name: string,
     email: string,
     address: string,
@@ -94,7 +94,7 @@ export default function AddUserForm({ setIsOpen, fetchClients }: AddUserFormProp
             }}>Por favor, preencha todos os campos obrigatórios</span>
 
             <form action="" className="modal_add_user--add_user_form" onSubmit={handleSubmit}>
-                <FormFields />
+                <FormFields handleChange={handleChange} clientForm={addUserForm}/>
                 <button className="add_user_form--submit">Adicionar</button>
             </form>
         </>
