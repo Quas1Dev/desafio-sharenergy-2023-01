@@ -3,11 +3,16 @@ import { ChangeEvent, useEffect, useState } from "react";
 
 export default function HttpImage() {
     const [pickedCode, setPickedCode] = useState(0);
+    const [url, setUrl] = useState("");
 
-    function handleChange(params: ChangeEvent<HTMLInputElement>) {
-        const { value } = params.target;
+    function handleChange(e: ChangeEvent<HTMLInputElement>) {
+        const { value } = e.target;
         setPickedCode(Number(value));
     }
+
+    useEffect(() => {
+        setUrl("https://http.cat/" + pickedCode);
+    }, [pickedCode])
 
     return (
         <div className="page_container--http_image_page">
@@ -34,8 +39,7 @@ export default function HttpImage() {
                 </form>
 
                 <div className="u-image_centralizer">
-                    <img src={"https://http.cat/" + pickedCode} alt="" className="random_http_image_page--http_image" 
-                    />
+                    <img src={url} alt="" className="random_http_image_page--http_image" />
                 </div>
             </main>
         </div>
