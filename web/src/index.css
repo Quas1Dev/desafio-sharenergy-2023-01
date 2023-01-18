@@ -313,6 +313,16 @@
   margin-top: 20px;
 }
 
+.main_content--refresh {
+  margin-top: 17px;
+  background-color: #6C6EA0;
+  font-size: 1rem;
+  padding: 4px 24px;
+  color: #FEFFFC;
+  outline: none;
+  border: none;
+}
+
 /* End random dog page */
 
 /* Clients page */
@@ -390,7 +400,7 @@
   margin-top: 15px;
 
   table-layout: fixed;
-  
+
   color: rgba(5, 5, 5, 0.7);
 }
 
