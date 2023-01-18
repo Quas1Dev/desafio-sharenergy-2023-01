@@ -1,3 +1,4 @@
+/* Global */
 * {
   padding: 0;
   margin: 0;
@@ -17,19 +18,20 @@
   font-size: 20px;
 }
 
+.page_container {
+  margin: auto;
+  max-width: 1200px;
+}
+/* End global */
+
 /* Utilities */
 .u-title {
   font-weight: 700;
   font-size: 1rem;
 }
-
 /* End utilities */
 
-.page_container {
-  margin: auto;
-  max-width: 1200px;
-}
-
+/* Site's main menu */
 .site_menu--list_of_links {
   display: flex;
   flex-direction: row;
@@ -47,6 +49,9 @@
   text-decoration: none;
 }
 
+/* End main menu */
+
+/* Login page */
 .page_container--login_page {
   display: flex;
   justify-content: center;
@@ -128,7 +133,9 @@
 
   color: #FF4040;
 }
+/* End login page */
 
+/* Random user page */
 .page_container--random_user_page {
   padding: 0 40px;
 }
@@ -226,7 +233,9 @@
   border-style: solid;
   border-color: var(--azul-escuro);
 }
+/* End random users page */
 
+/* HTTP image page */
 .random_http_image--code_options {
   display: inline-block;
   padding: 5px;
@@ -247,15 +256,18 @@
 .page_conent--image_form {
   font-size: 0.88rem;
 }
+/* End HTTP image page */
 
+/* Random dog page */
 .random_dog_page--image {
   display: block;
   max-width: 800px;
   margin: auto;
   margin-top: 20px;
 }
+/* End random dog page */
 
-
+/* Clients page */
 .clients_page--modal_add_user {
   max-width: 500px;
 
@@ -308,3 +320,5 @@
 
   color: #FF4040;
 }
+
+/* End clients page */
