@@ -1,10 +1,12 @@
 import express, { Request, response, Response } from 'express';
+import mongoose from 'mongoose';
 import cors from 'cors';
 
 // This guarantee the dbConfig content gets executed
 import './config/dbConfig';
 import ModelForUser from './models/UsersData';
 import ModelForClient from './models/ClientsData';
+import { Query } from 'mongoose';
 
 const app = express();
 app.use(cors());
@@ -53,6 +55,27 @@ app.get("/read", async (req: Request, resp: Response) => {
 app.delete("/delete", async (req: Request, resp: Response) => {
     const query = await ModelForClient.deleteOne({ cpf: req.query.cpf });
     resp.json(query);
+})
+
+app.put('/update/:id', async (req: Request, resp: Response) => {
+    const id = req.params.id;
+    const { cpf, email, telephone, address, name } = req.body; 
+
+    const client = await ModelForClient.findById(id);
+
+    if (!client)  return resp.json(client);
+
+    if (client && cpf || email || telephone || address || name) {
+        client.cpf = cpf;
+        client.name = name;
+        client.email = email;
+        client.address = address;
+        client.telephone = telephone;
+
+        client.save();
+    }
+
+    return resp.json(client);
 })
 
 app.listen(3333);
