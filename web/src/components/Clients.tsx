@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
 import Navigation from "./global-components/Navigation"
 import AddUserForm from "./clients-components/AddUserForm";
+import { Pencil, XCircle } from "phosphor-react";
 
 interface ClientsInterface {
     name: string,
@@ -61,6 +62,7 @@ export default function Clients() {
                                 <th>E-mail</th>
                                 <th>CPF</th>
                                 <th>Endereço</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -72,6 +74,10 @@ export default function Clients() {
                                     <td>{client.email}</td>
                                     <td>{client.cpf}</td>
                                     <td>{client.address}</td>
+                                    <td>
+                                        <Pencil />
+                                        <XCircle />
+                                    </td>
                                 </tr>
                             )
                         })}
