@@ -23,10 +23,12 @@ export default function HttpImage() {
             <main className="http_image_page--main_conent u-page_body">
 
                 <h1 className="main_content--http_image_page_title u-title">Gerador de imagem HTTP</h1>
+
                 <p className="page_content--page_description u-description">
                     A imagem abaixo foi fornecida pela API HTTP Cat, que retorna a imagem de um gato associada ao código HTTP escolhido. Digite um código no campo abaixo para
                     receber outra imagem.
                 </p>
+
                 <form action="#" className="page_conent--image_form">
                     <label htmlFor="http_code_number" className="">Digite um código:  </label>
                     <input type="number"
@@ -38,7 +40,12 @@ export default function HttpImage() {
                         onChange={handleChange}
                         className="random_http_image_page--http_code_picker" />
                 </form>
-                <img src={"https://http.cat/" + pickedCode} alt="" className="random_http_image_page--http_image" />
+
+                <div className="main-content--cat_image" style={{textAlign: "center", marginTop: "40px"}}>
+                    <div className="u-square_decorator">
+                        <img src={"https://http.cat/" + pickedCode} alt="" className="random_http_image_page--http_image" />
+                    </div>
+                </div>
             </main>
         </div>
     )
