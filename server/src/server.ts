@@ -52,8 +52,8 @@ app.get("/read", async (req: Request, resp: Response) => {
     return resp.json(clients)
 })
 
-app.delete("/delete", async (req: Request, resp: Response) => {
-    const query = await ModelForClient.deleteOne({ cpf: req.query.cpf });
+app.delete("/delete/:id", async (req: Request, resp: Response) => {
+    const query = await ModelForClient.deleteOne({ _id: req.params.id });
     resp.json(query);
 })
 
