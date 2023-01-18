@@ -27,7 +27,13 @@ export default function Clients() {
         fetchClients()
     }, []);
 
-    function handleClickDelete() { }
+    function handleClickDelete(cpf : string) { 
+        const deleteClient = async()=>{
+            const response = await axios.delete("http://localhost:3333/delete/?cpf="+cpf);
+            fetchClients();
+        }
+        deleteClient();
+    }
 
     function handleClickUpdate() { }
 
@@ -76,7 +82,7 @@ export default function Clients() {
                                     <td>{client.address}</td>
                                     <td>
                                         <Pencil />
-                                        <XCircle />
+                                        <XCircle onClick={(e) => handleClickDelete(client.cpf)}/>
                                     </td>
                                 </tr>
                             )
