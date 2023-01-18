@@ -62,7 +62,7 @@ export default function Clients() {
 
 
                 {clients.length > 0 &&
-                    <table>
+                    <table className="clients_page--table_clients">
                         <thead>
                             <tr>
                                 <th>Nome</th>
