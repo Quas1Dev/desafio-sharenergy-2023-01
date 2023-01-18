@@ -1,4 +1,3 @@
-import axios from "axios";
 import Navigation from './global-components/Navigation';
 import { ChangeEvent, useEffect, useState } from "react";
 
