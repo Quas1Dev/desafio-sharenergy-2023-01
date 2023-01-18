@@ -1,24 +1,13 @@
 import axios from "axios";
 import FormFields from "./FormFields";
 import { FormEvent, ChangeEvent, useState } from 'react';
+import { maskTelephone, maskCpf} from '../../utils/Masks';
+import { ClientFormInterface, ClientFormDataInterface } from "../../types/CustomTypes";
 
-export interface AddUserFormPropsinterface {
-    setIsOpen: Function;
-    fetchClients: Function;
-}
 
-export interface AddUserFormInterface {
-    name: string,
-    email: string,
-    address: string,
-    telephone: string,
-    cpf: string,
-    [key: string]: string;
-}
+export default function ClientForm ({ setIsOpen, fetchClients }: ClientFormInterface) {
 
-export default function AddUserForm({ setIsOpen, fetchClients }: AddUserFormPropsinterface) {
-
-    const [addUserForm, setAddUserForm] = useState<AddUserFormInterface>({
+    const [clientFormData, setClientFormData] = useState<ClientFormDataInterface>({
         name: "",
         email: "",
         address: "",
@@ -31,11 +20,11 @@ export default function AddUserForm({ setIsOpen, fetchClients }: AddUserFormProp
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        let key: keyof AddUserFormInterface;
+        let key: keyof ClientFormDataInterface;
 
         let emptyValue: boolean = false;
-        for (key of Object.keys(addUserForm)) {
-            if (addUserForm[key] == "") {
+        for (key of Object.keys(clientFormData)) {
+            if (clientFormData[key] == "") {
                 setEmptyField(true);
                 emptyValue = true;
             }
@@ -43,7 +32,7 @@ export default function AddUserForm({ setIsOpen, fetchClients }: AddUserFormProp
 
         if (!emptyValue) {
             const addUser = async () => {
-                const response = await axios.post("http://localhost:3333/add", addUserForm);
+                const response = await axios.post("http://localhost:3333/add", clientFormData);
                 setIsOpen(false);
                 fetchClients()
             }
@@ -55,36 +44,20 @@ export default function AddUserForm({ setIsOpen, fetchClients }: AddUserFormProp
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         let { name, value } = e.target;
-        console.log(value)
+
         if (name == "telephone") {
             value = maskTelephone(value);
         } else if (name == "cpf") {
             value = maskCpf(value);
         }
 
-        setAddUserForm(prevAddUserForm => {
+        setClientFormData(prevClientFormData => {
             return {
-                ...prevAddUserForm,
+                ...prevClientFormData,
                 [name]: value
             }
         })
 
-    }
-
-    function maskTelephone(value: string): string {
-        if (!value) return ""
-        value = value.replace(/\D/g, '')
-        value = value.replace(/(\d{2})(\d)/, "($1) $2")
-        value = value.replace(/(\d)(\d{4})$/, "$1-$2")
-        return value
-    }
-
-    function maskCpf(value: string): string {
-        value = value.replace(/\D/g, "")
-        value = value.replace(/(\d{3})(\d)/, "$1.$2")
-        value = value.replace(/(\d{3})(\d)/, "$1.$2")
-        value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
-        return value
     }
 
     return (
@@ -94,7 +67,7 @@ export default function AddUserForm({ setIsOpen, fetchClients }: AddUserFormProp
             }}>Por favor, preencha todos os campos obrigatórios</span>
 
             <form action="" className="modal_add_user--add_user_form" onSubmit={handleSubmit}>
-                <FormFields handleChange={handleChange} clientForm={addUserForm}/>
+                <FormFields handleChange={handleChange} clientForm={clientFormData}/>
                 <button className="add_user_form--submit">Adicionar</button>
             </form>
         </>
