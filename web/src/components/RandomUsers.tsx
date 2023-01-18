@@ -32,9 +32,10 @@ export default function RandomUser() {
                         email: usersList[i].email,
                         image: usersList[i].picture.medium,
                         username: usersList[i].login.username,
+                        gender: usersList[i].gender,
                         key: nanoid()
                     }
-
+                 
                     return [...prevRandomUsers, user]
                 })
 
@@ -51,7 +52,6 @@ export default function RandomUser() {
     randomUsers.slice(indexOfFirstUser, indexOfLastUser):
     searchList.slice(indexOfFirstUser, indexOfLastUser);
     
-
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         const value = e.target.value;
         setSearchList((prevSearchList) => {
