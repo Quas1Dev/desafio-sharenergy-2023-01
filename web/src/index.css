@@ -38,6 +38,9 @@
   margin-top: 14px;
 }
 
+.u-page_body {
+  padding: 0 40px;
+}
 /* End utilities */
 
 /* Site's main menu */
@@ -146,10 +149,6 @@
 /* End login page */
 
 /* Random user page */
-.page_container--random_user_page {
-  padding: 0 40px;
-}
-
 .page_content--cards_listing {
   display: flex;
   flex-wrap: wrap;

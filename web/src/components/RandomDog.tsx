@@ -17,7 +17,7 @@ export default function RandomDog() {
     return (
         <div className="page_container--random_dog_page">
             <Navigation />
-            <main className='random_dog_page--main_content'>
+            <main className='random_dog_page--main_content u-page_body'>
                 <h1 className="main_content--random_dog_page_title u-title">Cachorro aleatório</h1>
                 <p className='page_content--page_description u-description'>A imagem abaixo foi escolhida aleatoriamente e fornecida pela API Random Dog. Atualise a página para buscar outra imagem  apertando o botão abaixo
 ou o botão do navegador.</p>

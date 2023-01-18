@@ -42,7 +42,7 @@ export default function Clients() {
     }
 
     return (
-        <main className="page_container--main_ncontent">
+        <main className="page_container--main_ncontent u-page_body">
             <Navigation />
             <h1 className="main_content--clients_page_title u-title">Clientes</h1>
             <p className="page_content--page_description u-description">A tabela abaixo mostra os dados de clientes que cadastramos em nosso banco de dados hospedado na núvem. Caso  nenhum cliente esteja cadastrado, um botão

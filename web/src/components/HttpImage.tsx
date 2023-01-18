@@ -20,7 +20,7 @@ export default function HttpImage() {
     return (
         <div className="page_container--http_image_page">
             <Navigation />
-            <main className="http_image_page--main_conent">
+            <main className="http_image_page--main_conent u-page_body">
 
                 <h1 className="main_content--http_image_page_title u-title">Gerador de imagem HTTP</h1>
                 <p className="page_content--page_description u-description">
