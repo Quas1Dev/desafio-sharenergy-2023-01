@@ -290,7 +290,7 @@
 
   font-size: 0.8rem;
   font-weight: lighter;
-  
+
 }
 
 .add_user_form--submit {
@@ -301,4 +301,15 @@
   color: #FEFFFC;
   outline: none;
   border: none;
+}
+
+.modal_add_user--add_user_form_warning {
+  text-align: center;
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  /* identical to box height */
+
+  color: #FF4040;
 }

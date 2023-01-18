@@ -6,8 +6,17 @@ interface AddUserFormPropsinterface {
     fetchClients: Function;
 }
 
-export default function AddUserForm({ setIsOpen, fetchClients } : AddUserFormPropsinterface) {
-    const [addUserForm, setAddUserForm] = useState({
+interface AddUserFormInterface {
+    name: string,
+    email: string,
+    address: string,
+    telephone: string,
+    cpf: string,
+    [key: string]: string;
+}
+
+export default function AddUserForm({ setIsOpen, fetchClients }: AddUserFormPropsinterface) {
+    const [addUserForm, setAddUserForm] = useState<AddUserFormInterface>({
         name: "",
         email: "",
         address: "",
@@ -15,16 +24,30 @@ export default function AddUserForm({ setIsOpen, fetchClients } : AddUserFormPro
         cpf: "",
     })
 
+    const [emptyField, setEmptyField] = useState<boolean>(false)
+
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        const addUser = async () => {
-            const response = await axios.post("http://localhost:3333/add", addUserForm);
-            setIsOpen(false);
-            fetchClients()
+        let key: keyof AddUserFormInterface;
+
+        let emptyValue: boolean = false;
+        for (key of Object.keys(addUserForm)) {
+            if (addUserForm[key] == "") {
+                setEmptyField(true);
+                emptyValue = true;
+            }
         }
-        
-        addUser();
+
+        if (!emptyValue) {
+            const addUser = async () => {
+                const response = await axios.post("http://localhost:3333/add", addUserForm);
+                setIsOpen(false);
+                fetchClients()
+            }
+
+            addUser();
+        }
     }
 
 
@@ -61,7 +84,13 @@ export default function AddUserForm({ setIsOpen, fetchClients } : AddUserFormPro
         value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
         return value
     }
+
     return (
+        <>
+        <span className="modal_add_user--add_user_form_warning" style={{
+            display: emptyField ? "block" : "none"
+        }}>Por favor, preencha todos os campos obrigatórios</span>
+
         <form action="" className="modal_add_user--add_user_form" onSubmit={handleSubmit}>
             <label htmlFor="name">Nome</label>
             <input type="text"
@@ -107,5 +136,6 @@ export default function AddUserForm({ setIsOpen, fetchClients } : AddUserFormPro
 
             <button className="add_user_form--submit">Adicionar</button>
         </form>
+        </>
     )
 }
