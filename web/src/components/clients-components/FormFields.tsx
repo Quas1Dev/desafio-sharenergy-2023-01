@@ -1,7 +1,12 @@
-import { AddUserFormInterface } from "./AddUserForm"
+import { ClientFormDataInterface } from '../../types/CustomTypes';
 import { ChangeEventHandler } from "react"
 
-export default function FormFields({ handleChange, clientForm } : { handleChange: ChangeEventHandler<HTMLInputElement>, clientForm: AddUserFormInterface }) {
+interface FormFieldsInterface {
+    handleChange: ChangeEventHandler<HTMLInputElement>
+    clientForm: ClientFormDataInterface;
+}
+
+export default function FormFields({ handleChange, clientForm } : FormFieldsInterface) {
     return (
         <>
             <label htmlFor="name">Nome</label>
