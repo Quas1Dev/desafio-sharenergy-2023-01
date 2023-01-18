@@ -15,7 +15,7 @@ interface ClientsInterface {
 
 export default function Clients() {
     const [clients, setClients] = useState<ClientsInterface[]>([]);
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     
     const fetchClients = async () => {
