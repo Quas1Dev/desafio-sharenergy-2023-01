@@ -20,25 +20,24 @@ app.post("/confirmLogin", async (req: Request, resp: Response) => {
 
 // Add new client
 app.post("/add", async (req: Request, resp: Response) => {
+    const {name, email, telephone, cpf, address} = req.body;
 
     // Do not allow duplicate clients
-    const listOfClients = await ModelForClient.find({ cpf: req.body.cpf });
-
-    if (listOfClients.length > 0) {
-        return resp.json({ userAdded: false });
-    }
+    const client = await ModelForClient.findOne({ cpf });
+   
+    if (!client) return resp.json({ userAdded: false });
 
     const newClient = new ModelForClient({
-        name: req.body.name,
-        cpf: req.body.cpf,
-        email: req.body.email,
-        telephone: req.body.telephone,
-        address: req.body.address
+        name,
+        cpf,
+        email,
+        telephone,
+        address
     });
 
-    const doc = await newClient.save();
+    const savedDoc = await newClient.save();
 
-    if (doc == newClient) {
+    if (savedDoc == newClient) {
         resp.json({ userAdded: true })
     } else {
         resp.json({ userAdded: false });
