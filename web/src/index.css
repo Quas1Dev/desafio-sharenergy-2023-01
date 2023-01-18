@@ -22,6 +22,7 @@
   margin: auto;
   max-width: 1200px;
 }
+
 /* End global */
 
 /* Utilities */
@@ -29,6 +30,7 @@
   font-weight: 700;
   font-size: 1rem;
 }
+
 /* End utilities */
 
 /* Site's main menu */
@@ -133,6 +135,7 @@
 
   color: #FF4040;
 }
+
 /* End login page */
 
 /* Random user page */
@@ -161,10 +164,18 @@
   padding: 24px 0;
   margin-top: 20px;
   border-width: 0px 0px 0px 44px;
-  border-color: var(--azul-escuro);
+  
   border-style: solid;
   position: relative;
   box-shadow: -6px 4px 5px rgba(0, 0, 0, 0.25);
+}
+
+.user_card-female {
+  border-color: var(--rosa);
+}
+
+.user_card-male {
+  border-color: var(--azul-escuro);
 }
 
 .user_card--user_image {
@@ -233,6 +244,7 @@
   border-style: solid;
   border-color: var(--azul-escuro);
 }
+
 /* End random users page */
 
 /* HTTP image page */
@@ -256,6 +268,7 @@
 .page_conent--image_form {
   font-size: 0.88rem;
 }
+
 /* End HTTP image page */
 
 /* Random dog page */
@@ -265,6 +278,7 @@
   margin: auto;
   margin-top: 20px;
 }
+
 /* End random dog page */
 
 /* Clients page */
