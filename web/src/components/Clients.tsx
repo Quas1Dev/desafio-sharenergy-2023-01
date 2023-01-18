@@ -42,9 +42,9 @@ export default function Clients() {
     }
 
     return (
-        <div className="page_container--clients_page">
+        <main className="page_container--main_ncontent">
             <Navigation />
-            <h1 className="clients_page--title u-title">Clientes</h1>
+            <h1 className="main_content--clients_page_title u-title">Clientes</h1>
 
             <button className="clients_page--add_user" onClick={handleOpenCloseModal}>Adicionar usuário</button>
 
@@ -91,6 +91,6 @@ export default function Clients() {
                     </table>
                 }
             </main>
-        </div>
+        </main>
     )
 }
