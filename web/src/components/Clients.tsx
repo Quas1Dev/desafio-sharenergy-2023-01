@@ -45,7 +45,7 @@ export default function Clients() {
         <main className="page_container--main_ncontent">
             <Navigation />
             <h1 className="main_content--clients_page_title u-title">Clientes</h1>
-            <p className="page_content--page_description">A tabela abaixo mostra os dados de clientes que cadastramos em nosso banco de dados hospedado na núvem. Caso  nenhum cliente esteja cadastrado, um botão
+            <p className="page_content--page_description u-description">A tabela abaixo mostra os dados de clientes que cadastramos em nosso banco de dados hospedado na núvem. Caso  nenhum cliente esteja cadastrado, um botão
                 apenas adicione um novo usuário.</p>
             <button className="clients_page--add_user" onClick={handleOpenCloseModal}>Adicionar usuário</button>
 
