@@ -308,7 +308,7 @@
 /* Random dog page */
 .random_dog_page--image {
   display: block;
-  max-width: 800px;
+  width: 100%;
   margin: auto;
   margin-top: 20px;
 }
@@ -321,6 +321,12 @@
   color: #FEFFFC;
   outline: none;
   border: none;
+}
+
+.main_content--image_centralizer {
+  max-width: 800px;
+  margin: auto;
+  margin-bottom: 20px;
 }
 
 /* End random dog page */

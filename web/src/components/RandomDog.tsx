@@ -11,7 +11,7 @@ export default function RandomDog() {
         console.log(response.data)
         setImage(response.data)
     }
-    
+
     useEffect(() => {
         fetchDog();
     }, [])
@@ -28,7 +28,9 @@ export default function RandomDog() {
                 <p className='page_content--page_description u-description'>A imagem abaixo foi escolhida aleatoriamente e fornecida pela API Random Dog. Atualise a página para buscar outra imagem  apertando o botão abaixo
                     ou o botão do navegador.</p>
                 <button className="main_content--refresh" onClick={handleClick}>Recarregar</button>
-                <img src={"https://random.dog/" + image} className="random_dog_page--image" alt="Imagem aleatória de cachorro ou cachorros gerada pela API Random Dogs." />
+                <div className='main_content--image_centralizer'>
+                    <img src={"https://random.dog/" + image} className="random_dog_page--image" alt="Imagem aleatória de cachorro ou cachorros gerada pela API Random Dogs." />
+                </div>
 
             </main>
 
