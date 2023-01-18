@@ -23,7 +23,10 @@ export default function HttpImage() {
             <main className="http_image_page--main_conent">
 
                 <h1 className="main_content--http_image_page_title u-title">Gerador de imagem HTTP</h1>
-
+                <p className="page_content--page_description">
+                    A imagem abaixo foi fornecida pela API HTTP Cat, que retorna a imagem de um gato associada ao código HTTP escolhido. Digite um código no campo abaixo para
+                    receber outra imagem.
+                </p>
                 <form action="#" className="page_conent--image_form">
                     <label htmlFor="http_code_number" className="">Digite um código:  </label>
                     <input type="number"
