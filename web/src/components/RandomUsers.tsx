@@ -80,7 +80,7 @@ export default function RandomUser() {
 
                 <UsersDisplay users={currentUsers} loading={loading} />
 
-                <Pagination totalUsers={randomUsers.length} usersPerPage={usersPerPage}
+                <Pagination totalUsers={ searchList.length == 0 ? randomUsers.length : searchList.length} usersPerPage={usersPerPage}
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage} />
             </main>
