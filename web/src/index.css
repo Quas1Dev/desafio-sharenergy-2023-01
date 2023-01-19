@@ -430,4 +430,11 @@
       align-self:initial;
       
   }
+  .post_listing--pagination{
+    gap: 7px;
+  }
+  .pagination--index {
+    width: 15px;
+    height: 15px;
+  }
 }
