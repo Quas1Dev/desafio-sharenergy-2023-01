@@ -161,7 +161,7 @@
   line-height: 17px;
   /* identical to box height */
 
-  color: #FF4040;
+  color: var(--pink);
 }
 
 /* End login page */
@@ -234,14 +234,14 @@
   height: 18px;
   border-radius: 50%;
 
-  border: 0.5px solid #6C6EA0;
+  border: 0.5px solid var(--purple);
   flex-shrink: 0;
 
   cursor: pointer !important;
 }
 
 .pagination--index_selected {
-  background: #6C6EA0;
+  background: var(--purple);
 }
 
 .page_content--search_box {
@@ -289,7 +289,7 @@
   margin-top: 26px;
 
   background: #FFFFFF;
-  border: 1px solid #000000;
+  border: 1px solid var(--black);
 
   font-size: 0.8rem;
 
@@ -417,3 +417,17 @@
 }
 
 /* End clients page */
+
+@media only screen and (max-width: 842px) {
+  .page_content--cards_listing {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card_listing--user_card {
+    width: 300px;
+      align-self:initial;
+      
+  }
+}
