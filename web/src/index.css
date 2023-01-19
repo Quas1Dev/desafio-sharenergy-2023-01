@@ -5,9 +5,9 @@
   box-sizing: border-box;
   position: relative;
 
-  --rosa: #FF1053;
-  --azul-escuro: #6C6EA0;
-  --azul-claro: #66C7F4;
+  --pink: #FF1053;
+  --purple: #6C6EA0;
+  --blue: #66C7F4;
   --cinza: #66C7F4;
   --black: #000;
 
@@ -122,7 +122,7 @@
   display: block;
   border-width: 1px 1px 5px 1px;
   border-style: solid;
-  border-color: var(--azul-escuro);
+  border-color: var(--purple);
   padding-left: 5px;
   outline: none;
   font-size: 0.8rem;
@@ -189,11 +189,11 @@
 }
 
 .user_card-female {
-  border-color: var(--rosa);
+  border-color: var(--pink);
 }
 
 .user_card-male {
-  border-color: var(--azul-escuro);
+  border-color: var(--purple);
 }
 
 .user_card--user_image {
@@ -260,7 +260,7 @@
   outline: none;
   border-width: 0 0 2px 0;
   border-style: solid;
-  border-color: var(--azul-escuro);
+  border-color: var(--purple);
 }
 
 /* End random users page */
@@ -269,7 +269,7 @@
 .random_http_image--code_options {
   display: inline-block;
   padding: 5px;
-  border: 1px solid var(--azul-claro);
+  border: 1px solid var(--purple);
 }
 
 .random_http_image_page--http_image {
@@ -296,7 +296,7 @@
   outline: none;
   border-width: 0 0 2px 0;
   border-style: solid;
-  border-color: var(--azul-escuro);
+  border-color: var(--purple);
 }
 
 .page_conent--image_form {
@@ -356,7 +356,7 @@
 
   border-width: 1px 1px 5px 1px;
   border-style: solid;
-  border-color: var(--azul-escuro);
+  border-color: var(--purple);
   outline: none;
 
   font-size: 0.8rem;
@@ -366,7 +366,7 @@
 
 .add_user_form--submit {
   margin-top: 17px;
-  background-color: #6C6EA0;
+  background-color: var(--purple);
   font-size: 1rem;
   padding: 4px 24px;
   color: #FEFFFC;
@@ -382,14 +382,14 @@
   line-height: 17px;
   /* identical to box height */
 
-  color: #FF4040;
+  color: var(--pink);
 }
 
 .clients_page--add_user {
   margin-top: 17px;
   padding: 4px 24px;
 
-  background-color: #6C6EA0;
+  background-color: var(--purple);
 
   outline: none;
   border: none;
