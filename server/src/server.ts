@@ -78,17 +78,4 @@ app.put('/update/:id', async (req: Request, resp: Response) => {
     return resp.json(client);
 })
 
-// Check whether link return 404
-app.get('/check404', async (req: Request, resp: Response) => {
-    const url: string = req.query.url as string;
-
-    axios.get(url).then(response => {
-        return resp.json({ status404: false })
-    }).catch((err: Error | AxiosError) => {
-        if (err) {
-            return resp.json({status404: true});
-        }
-    });
-});
-
 app.listen(3333);
