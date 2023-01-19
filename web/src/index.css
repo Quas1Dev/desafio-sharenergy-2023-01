@@ -315,8 +315,8 @@
 
 .main_content--refresh {
   margin-top: 17px;
-  background-color: #6C6EA0;
-  font-size: 1rem;
+  background-color: var(--purple);
+  font-size: 0.8rem;
   padding: 4px 24px;
   color: #FEFFFC;
   outline: none;
@@ -328,7 +328,6 @@
   margin: auto;
   margin-bottom: 20px;
 }
-
 /* End random dog page */
 
 /* Clients page */
