@@ -1,17 +1,26 @@
 import Navigation from './global-components/Navigation';
 import { ChangeEvent, useEffect, useState } from "react";
+import isNumber from '../utils/IsNumber';
+import checkHttp from '../utils/CheckHttps';
 
 export default function HttpImage() {
-    const [pickedCode, setPickedCode] = useState(0);
-    const [url, setUrl] = useState("");
+    const [pickedCode, setPickedCode] = useState<string>();
+    const [url, setUrl] = useState<string>("");
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         const { value } = e.target;
-        setPickedCode(Number(value));
+        if (isNumber(value) || value == "") {
+            setPickedCode(value);
+        }
     }
 
     useEffect(() => {
-        setUrl("https://http.cat/" + pickedCode);
+        const result: boolean = checkHttp(Number(pickedCode));
+        if (result) {
+            setUrl("https://http.cat/" + pickedCode)
+        } else {
+            setUrl("https://i.postimg.cc/k5Rh8k8H/404.jpg");
+        }
     }, [pickedCode])
 
     return (
@@ -28,14 +37,13 @@ export default function HttpImage() {
 
                 <form action="#" className="page_conent--image_form">
                     <label htmlFor="http_code_number" className="">Digite um código:  </label>
-                    <input type="number"
-                        min="2"
-                        max="100"
+                    <input type="text"
                         name="http_code_picker"
                         id="http_code_number"
                         value={pickedCode}
                         onChange={handleChange}
-                        className="random_http_image_page--http_code_picker" />
+                        className="random_http_image_page--http_code_picker" 
+                        placeholder='Ex: 500'/>
                 </form>
 
                 <div className="u-image_centralizer">
