@@ -51,9 +51,9 @@ export default function Clients() {
     }
 
     return (
-        <div className="page_container--main_ncontent ">
+        <div className="page_container--clients_page">
             <Navigation />
-            <main className="u-page_body">
+            <main className=" clients_page--main_content u-page_body">
                 <h1 className="main_content--clients_page_title u-title">Clientes</h1>
                 <p className="page_content--page_description u-description">A tabela abaixo mostra os dados de clientes que cadastramos em nosso banco de dados hospedado na núvem. Caso  nenhum cliente esteja cadastrado, um botão
                     apenas adicione um novo usuário.</p>
@@ -78,7 +78,7 @@ export default function Clients() {
                     <AddUserForm setIsOpen={setIsOpen} fetchClients={fetchClients} />
                 </ReactModal>
 
-
+                <div className="table_wrapper">
                 {clients.length > 0 &&
                     <table className="clients_page--table_clients">
                         <thead>
@@ -110,6 +110,7 @@ export default function Clients() {
                         </tbody>
                     </table>
                 }
+                 </div>
             </main>
         </div>
     )

@@ -398,6 +398,10 @@
   color: #FEFFFC;
 }
 
+.table_wrapper {
+  overflow-x:auto;
+}
+
 .clients_page--table_clients {
   border-collapse: collapse;
   border: 1px solid rgba(204, 204, 204, 0.5);
@@ -406,14 +410,18 @@
   margin-top: 15px;
 
   table-layout: fixed;
-
+  
+  font-size: 0.8rem;
   color: rgba(5, 5, 5, 0.7);
+
+  overflow-x: scroll;
 }
 
 .clients_page--table_clients td,
 .clients_page--table_clients th {
   padding: 5px;
   border: 1px solid rgba(204, 204, 204, 0.5);
+  white-space: nowrap;
 }
 
 /* End clients page */
@@ -424,17 +432,40 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .card_listing--user_card {
     width: 300px;
-      align-self:initial;
-      
+    align-self: initial;
+
   }
-  .post_listing--pagination{
+
+  .post_listing--pagination {
     gap: 7px;
   }
+
   .pagination--index {
     width: 15px;
     height: 15px;
+  }
+
+  .clients_page--modal {
+    max-width: 400px;
+
+    padding: 20px 35px;
+
+    font-size: 0.8rem;
+  }
+
+  .add_user_form--field {
+    height: 33px;
+    margin-top: 5px;
+
+    font-size: 0.7rem;
+
+  }
+
+  .add_user_form--submit{
+    margin-top: 13px;
+    font-size: 0.8rem;
   }
 }
