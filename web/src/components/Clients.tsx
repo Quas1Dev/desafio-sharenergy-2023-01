@@ -1,6 +1,9 @@
 import axios from "axios";
 import { useState, useEffect } from 'react';
+
 import ReactModal from 'react-modal';
+ReactModal.setAppElement('#root');
+
 import Navigation from "./global-components/Navigation"
 import AddUserForm from "./clients-components/AddClientForm";
 import UpdateUserForm from "./clients-components/UpdateUserForm";
@@ -101,8 +104,8 @@ export default function Clients() {
                                         <td>{client.cpf}</td>
                                         <td>{client.address}</td>
                                         <td>
-                                            <Pencil onClick={(e)=> handleClickUpdate({...client})} />
-                                            <XCircle onClick={(e) => handleClickDelete(client._id)} />
+                                            <Pencil style={{cursor: "pointer"}}onClick={(e)=> handleClickUpdate({...client})} />
+                                            <XCircle style={{cursor: "pointer"}}onClick={(e) => handleClickDelete(client._id)} />
                                         </td>
                                     </tr>
                                 )

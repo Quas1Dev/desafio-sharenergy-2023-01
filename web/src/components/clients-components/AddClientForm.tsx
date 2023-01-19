@@ -13,19 +13,22 @@ export default function AddClientForm ({ setIsOpen, fetchClients }: AddClientFor
         address: "",
         telephone: "",
         cpf: "",
-        id: ""
+        _id: ""
     })
 
     const [emptyField, setEmptyField] = useState<boolean>(false)
 
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
-
+        
         let key: keyof ClientInterface;
 
         let emptyValue: boolean = false;
+        console.log("Keys: ", Object.keys(clientFormData));
         for (key of Object.keys(clientFormData)) {
-            if (clientFormData[key] == "") {
+            // console.log("Key empty: ", key)
+            if (clientFormData[key] == "" && key !="_id") {
+                console.log("Key:", clientFormData[key])
                 setEmptyField(true);
                 emptyValue = true;
             }
