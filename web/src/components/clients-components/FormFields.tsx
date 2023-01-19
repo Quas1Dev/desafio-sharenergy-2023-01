@@ -1,12 +1,6 @@
-import { ClientFormDataInterface } from '../../types/CustomTypes';
-import { ChangeEventHandler } from "react"
+import { FormFieldsInterface } from "../../interfaces/ClientsPageInterfaces"
 
-interface FormFieldsInterface {
-    handleChange: ChangeEventHandler<HTMLInputElement>
-    clientForm: ClientFormDataInterface;
-}
-
-export default function FormFields({ handleChange, clientForm } : FormFieldsInterface) {
+export default function FormFields({ handleChange, clientData } : FormFieldsInterface) {
     return (
         <>
             <label htmlFor="name">Nome</label>
@@ -15,7 +9,7 @@ export default function FormFields({ handleChange, clientForm } : FormFieldsInte
                 name="name"
                 onChange={handleChange}
                 className="add_user_form--field"
-                value={clientForm.name} />
+                value={clientData.name} />
 
             <label htmlFor="email">E-mail</label>
             <input type="text"
@@ -23,7 +17,7 @@ export default function FormFields({ handleChange, clientForm } : FormFieldsInte
                 name="email"
                 onChange={handleChange}
                 className="add_user_form--field"
-                value={clientForm.email} />
+                value={clientData.email} />
 
             <label htmlFor="telephone">Telefone</label>
             <input type="tel"
@@ -32,7 +26,7 @@ export default function FormFields({ handleChange, clientForm } : FormFieldsInte
                 maxLength={15}
                 onChange={handleChange}
                 className="add_user_form--field"
-                value={clientForm.telephone} />
+                value={clientData.telephone} />
 
             <label htmlFor="cpf">CPF</label>
             <input type="text"
@@ -41,7 +35,7 @@ export default function FormFields({ handleChange, clientForm } : FormFieldsInte
                 maxLength={14}
                 onChange={handleChange}
                 className="add_user_form--field"
-                value={clientForm.cpf} />
+                value={clientData.cpf} />
 
             <label htmlFor="address">Endereço</label>
             <input type="text"
@@ -49,7 +43,7 @@ export default function FormFields({ handleChange, clientForm } : FormFieldsInte
                 name="address"
                 onChange={handleChange}
                 className="add_user_form--field"
-                value={clientForm.address} />
+                value={clientData.address} />
         </>
     )
 }

@@ -2,21 +2,23 @@ import axios from "axios";
 import { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
 import Navigation from "./global-components/Navigation"
-import AddUserForm from "./clients-components/AddUserForm";
+import AddUserForm from "./clients-components/AddClientForm";
+import UpdateUserForm from "./clients-components/UpdateUserForm";
 import { Pencil, XCircle } from "phosphor-react";
-
-interface ClientsInterface {
-    name: string,
-    cpf: string,
-    address: string,
-    email: string,
-    telephone: string
-}
+import { ClientInterface } from "../interfaces/ClientsPageInterfaces";
 
 export default function Clients() {
-    const [clients, setClients] = useState<ClientsInterface[]>([]);
+    const [clients, setClients] = useState<ClientInterface[]>([]);
     const [isOpen, setIsOpen] = useState<boolean>(false);
-
+    const [isUpdOpen, setIsUpdOpen] = useState<boolean>(false);
+    const [clientToUpdate, setClientToUpdate] = useState<ClientInterface>({
+        name: "",
+        email: "",
+        address: "",
+        telephone: "",
+        cpf: "",
+        _id: ""
+    });
 
     const fetchClients = async () => {
         const response = await axios.get("http://localhost:3333/read");
@@ -27,18 +29,25 @@ export default function Clients() {
         fetchClients()
     }, []);
 
-    function handleClickDelete(cpf: string) {
+    function handleClickDelete(_id : string) {
         const deleteClient = async () => {
-            const response = await axios.delete("http://localhost:3333/delete/?cpf=" + cpf);
+            const response = await axios.delete("http://localhost:3333/delete/" + _id);
             fetchClients();
         }
         deleteClient();
     }
 
-    function handleClickUpdate() { }
+    function handleClickUpdate(clientData : ClientInterface) {
+        setClientToUpdate(clientData);
+        setIsUpdOpen(prevIsUpdOpen => !prevIsUpdOpen);
+     }
 
     function handleOpenCloseModal() {
         setIsOpen(prevOpenModal => !prevOpenModal);
+    }
+
+    function handleOpenCloseUpd() {
+        setIsUpdOpen(prevIsUpdOpen => !prevIsUpdOpen);
     }
 
     return (
@@ -51,7 +60,16 @@ export default function Clients() {
                 <button className="clients_page--add_user" onClick={handleOpenCloseModal}>Adicionar usuário</button>
 
                 <ReactModal
-                    className="clients_page--modal_add_user"
+                    className="clients_page--modal"
+                    isOpen={isUpdOpen}
+                    shouldCloseOnOverlayClick={true}
+                    shouldCloseOnEsc={true}
+                    onRequestClose={handleOpenCloseUpd}>
+                    <UpdateUserForm setIsUpdOpen={setIsUpdOpen} fetchClients={fetchClients} clientToUpdate={clientToUpdate} />
+                </ReactModal>
+
+                <ReactModal
+                    className="clients_page--modal"
                     shouldCloseOnOverlayClick={true}
                     shouldCloseOnEsc={true}
                     isOpen={isOpen}
@@ -83,8 +101,8 @@ export default function Clients() {
                                         <td>{client.cpf}</td>
                                         <td>{client.address}</td>
                                         <td>
-                                            <Pencil />
-                                            <XCircle onClick={(e) => handleClickDelete(client.cpf)} />
+                                            <Pencil onClick={(e)=> handleClickUpdate({...client})} />
+                                            <XCircle onClick={(e) => handleClickDelete(client._id)} />
                                         </td>
                                     </tr>
                                 )

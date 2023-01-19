@@ -328,10 +328,11 @@
   margin: auto;
   margin-bottom: 20px;
 }
+
 /* End random dog page */
 
 /* Clients page */
-.clients_page--modal_add_user {
+.clients_page--modal {
   max-width: 500px;
 
   margin: 20px auto;
