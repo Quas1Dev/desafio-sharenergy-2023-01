@@ -48,7 +48,6 @@ app.post("/add", async (req: Request, resp: Response) => {
 
 app.get("/read", async (req: Request, resp: Response) => {
     const clients = await ModelForClient.find({});
-    console.log(clients);
     return resp.json(clients)
 })
 
@@ -58,6 +57,7 @@ app.delete("/delete/:id", async (req: Request, resp: Response) => {
 })
 
 app.put('/update/:id', async (req: Request, resp: Response) => {
+    
     const id = req.params.id;
     const { cpf, email, telephone, address, name } = req.body;
 
