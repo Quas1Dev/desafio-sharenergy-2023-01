@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navigation from './global-components/Navigation';
 import { MouseEvent, MouseEventHandler } from 'react';
-import { GlobalPropsInterface } from '../interfaces/GlobalInterface';
 
-export default function RandomDog({ user, setUser }: GlobalPropsInterface) {
+export default function RandomDog() {
     const [image, setImage] = useState()
 
     const fetchDog = async () => {

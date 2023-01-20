@@ -2,9 +2,8 @@ import Navigation from './global-components/Navigation';
 import { ChangeEvent, useEffect, useState } from "react";
 import isNumber from '../utils/IsNumber';
 import checkHttp from '../utils/CheckHttps';
-import { GlobalPropsInterface } from '../interfaces/GlobalInterface';
 
-export default function HttpImage({ user, setUser }: GlobalPropsInterface) {
+export default function HttpImage() {
     const [pickedCode, setPickedCode] = useState<string>();
     const [url, setUrl] = useState<string>("");
 

@@ -7,9 +7,8 @@ import Navigation from './global-components/Navigation'
 import UsersDisplay from "./random-users-page-components/UsersDisplay";
 import Pagination from "./random-users-page-components/Pagination";
 import SearchBox from "./random-users-page-components/SearchBox";
-import { GlobalPropsInterface } from "../interfaces/GlobalInterface";
 
-export default function RandomUser({ user, setUser }: GlobalPropsInterface) {
+export default function RandomUser() {
     const [randomUsers, setRandomUsers] = useState<RandomUserData[]>([]);
     const [searchList, setSearchList] = useState<RandomUserData[]>([]);
 
