@@ -11,6 +11,8 @@ function LoginForm({user, setUser} : {user:string, setUser : Function}) {
         keepon: false,
     });
 
+    const [showWarning, setShowWarning] = useState<boolean>(false);
+
     // Control form data update.
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         let { name, value, type, checked } = e.target;
@@ -31,25 +33,15 @@ function LoginForm({user, setUser} : {user:string, setUser : Function}) {
         const checkUser = async () => {
 
             const response = await axios.post("http://localhost:3333/confirmLogin", form);
+            
+            if (form.keepon) {
+                localStorage.setItem('user', JSON.stringify(response.data));
+            }
+            if (!response.data._id) {
+                setShowWarning(true);
+            }
 
-            setUser((prevUser : string) => {
-
-                // React ^16 does not refresh when state is set to null.
-                // So we map a null value to 0. *1
-
-                if (response.data == null) {
-                    response.data = "0";
-                }
-
-                if (form.keepon) {
-                    console.log("Saving user ", response.data);
-                    localStorage.setItem('user', JSON.stringify(response.data));
-                }
-                
-
-                return response.data;
-            });
-
+            setUser(JSON.stringify(response.data));
         }
 
 
@@ -61,25 +53,35 @@ function LoginForm({user, setUser} : {user:string, setUser : Function}) {
     */
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
-
+        console.log("Logged user:", loggedInUser);
         if (loggedInUser) {
-
-            const foundUser = JSON.parse(loggedInUser);
-
-            setUser(foundUser);
+           setUser(loggedInUser);
+        } else {
+           setUser(JSON.stringify({_id: null}));
         }
-    }, [])
+    },[])
 
     // Redirect logged in user.
     if (user) {
+        console.log("Cofirming user.");
+        const checkUser = async ()=>{
+           const loggedUser = JSON.parse(user);
+           const response =  await axios.get("http://localhost:3333/confirmUser/" + loggedUser._id);
+           const data = response.data;
+           if (data._id) {
+            navigate("/randomuser");
+           } 
+            
+        
+        }
 
-        navigate("/randomuser");
+        checkUser();
     }
-
+    console.log("User:",user)
     return (
         <div className="page_container--login_page">
             <main className="login_page--main_content" >
-                {user != undefined && user == "0" && <span className="login_box--warning">Usuário ou senha incorretos! Por favor, tente novamente.</span>}
+                {showWarning && <span className="login_box--warning">Usuário ou senha incorretos! Por favor, tente novamente.</span>}
                 
                 <h1 className="main_content--login_page_title u-title">Login</h1>
                 <form action="#" className="login_box--login_form" onSubmit={handleSubmit}>
