@@ -35,11 +35,13 @@ export default function Clients() {
         fetchClients()
     }, []);
 
+    // Prevent deleting clieng by accident
     function handleClickDelete(_id: string) {
         setIsDelConfirmOpen(previsDelConfirmOpen => !previsDelConfirmOpen)
         setUserToDelete(_id);
     }
 
+    // Delete the user on confirmation
     function handleClickConfirm() {
         const deleteClient = async () => {
             const response = await axios.delete("http://localhost:3333/delete/" + userToDelete);
@@ -49,19 +51,23 @@ export default function Clients() {
         setIsDelConfirmOpen(false);
     }
 
+    // Pass client's info to fill in form that should be changed
     function handleClickUpdate(clientData: ClientInterface) {
         setClientToUpdate(clientData);
         setIsUpdOpen(prevIsUpdOpen => !prevIsUpdOpen);
     }
 
+    // Controles the opening and closing of the 'delete' modal
     function handleOpenCloseModal() {
         setIsOpen(prevOpenModal => !prevOpenModal);
     }
 
+    // Controles the opening and closing of the 'update' modal
     function handleOpenCloseUpd() {
         setIsUpdOpen(prevIsUpdOpen => !prevIsUpdOpen);
     }
 
+    // Controles the opening and closing of the 'delete confirmation' modal
     function handleCloseConfirm() {
         setIsDelConfirmOpen(prevIsDelConfirmOpen => !prevIsDelConfirmOpen);
     }

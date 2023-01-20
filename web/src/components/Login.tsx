@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
 function Login({user, setUser} : {user:string, setUser : Function}) {
-    // Form data is kept here.
     const [form, setForm] = useState({
         user: "",
         password: "",
@@ -26,17 +25,19 @@ function Login({user, setUser} : {user:string, setUser : Function}) {
     // This should be used to navegate to another page.
     const navigate = useNavigate();
 
-    // Here we communicate to our server.
+    // Ask the server whether user exists;
+    // Receive {_id: <some user id>} or {_id: null}
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const checkUser = async () => {
-
             const response = await axios.post("http://localhost:3333/confirmLogin", form);
             
             if (form.keepon) {
                 localStorage.setItem('user', JSON.stringify(response.data));
             }
+
+            // Display warning if no user is returned.
             if (!response.data._id) {
                 setShowWarning(true);
             }
@@ -44,40 +45,23 @@ function Login({user, setUser} : {user:string, setUser : Function}) {
             setUser(JSON.stringify(response.data));
         }
 
-
         checkUser();
     }
 
-    /* 
-      This should make the user "always on" *2
-    */
-    useEffect(() => {
-        const loggedInUser = localStorage.getItem("user");
-        console.log("Logged user:", loggedInUser);
-        if (loggedInUser) {
-           setUser(loggedInUser);
-        } else {
-           setUser(JSON.stringify({_id: null}));
-        }
-    },[])
-
-    // Redirect logged in user.
+    // Redirect logged in user to the "HTTP image" page
     if (user) {
         console.log("Cofirming user.");
-        const checkUser = async ()=>{
+        const checkAndUser = async ()=>{
+
            const loggedUser = JSON.parse(user);
            const response =  await axios.get("http://localhost:3333/confirmUser/" + loggedUser._id);
            const data = response.data;
-           if (data._id) {
-            navigate("/randomuser");
-           } 
-            
-        
-        }
 
-        checkUser();
+           if (data._id) navigate("/randomuser");
+        }
+        checkAndUser();
     }
-    console.log("User:",user)
+
     return (
         <div className="page_container--login_page">
             <main className="login_page--main_content" >
@@ -131,9 +115,4 @@ Dev's comments
 *1 - The user is set to null in case the login was unsuccessful.
 We need React to refresh when this is the case so we may display 
 the warning.
-
-*2 - If user has already logged in, and we saved its info
-in the local storage, we retrieve the user's info to our
-user state, which is used to decide whether we display 
-this component or not.
 */

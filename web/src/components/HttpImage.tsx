@@ -4,9 +4,12 @@ import isNumber from '../utils/IsNumber';
 import checkHttp from '../utils/CheckHttps';
 
 export default function HttpImage() {
+    // The code we want an image for
     const [pickedCode, setPickedCode] = useState<string>();
+    // The address for the image that should be loaded
     const [url, setUrl] = useState<string>("");
 
+    // If is a number, we set picked code
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         const { value } = e.target;
         if (isNumber(value) || value == "") {
@@ -14,6 +17,7 @@ export default function HttpImage() {
         }
     }
 
+    // Load random cat or set 'default' image.
     useEffect(() => {
         const result: boolean = checkHttp(Number(pickedCode));
         if (result) {
