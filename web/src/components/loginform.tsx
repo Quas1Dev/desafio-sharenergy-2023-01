@@ -1,17 +1,16 @@
 import { FormEvent, useEffect, useState, ChangeEvent } from "react";
 import { useNavigate } from 'react-router-dom'
+import { GlobalPropsInterface } from "../interfaces/GlobalInterface";
+
 import axios from 'axios';
 
-function LoginForm() {
+function LoginForm({user, setUser} : GlobalPropsInterface) {
     // Form data is kept here.
     const [form, setForm] = useState({
         user: "",
         password: "",
         keepon: false,
     });
-
-    // User id from database should be kept here.
-    const [user, setUser] = useState();
 
     // Control form data update.
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -34,13 +33,13 @@ function LoginForm() {
 
             const response = await axios.post("http://localhost:3333/confirmLogin", form);
 
-            setUser((prevUser) => {
+            setUser((prevUser : string) => {
 
                 // React ^16 does not refresh when state is set to null.
                 // So we map a null value to 0. *1
 
                 if (response.data == null) {
-                    response.data = 0;
+                    response.data = "0";
                 }
 
                 if (form.keepon) {
@@ -81,7 +80,7 @@ function LoginForm() {
     return (
         <div className="page_container--login_page">
             <main className="login_page--main_content" >
-                {user != undefined && user == 0 && <span className="login_box--warning">Usuário ou senha incorretos! Por favor, tente novamente.</span>}
+                {user != undefined && user == "0" && <span className="login_box--warning">Usuário ou senha incorretos! Por favor, tente novamente.</span>}
                 
                 <h1 className="main_content--login_page_title u-title">Login</h1>
                 <form action="#" className="login_box--login_form" onSubmit={handleSubmit}>

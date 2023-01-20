@@ -9,8 +9,10 @@ import AddUserForm from "./clients-components/AddClientForm";
 import UpdateUserForm from "./clients-components/UpdateUserForm";
 import { Pencil, XCircle } from "phosphor-react";
 import { ClientInterface } from "../interfaces/ClientsPageInterfaces";
+import { GlobalPropsInterface } from "../interfaces/GlobalInterface";
 
-export default function Clients() {
+export default function Clients({ user, setUser }: GlobalPropsInterface) {
+
     const [clients, setClients] = useState<ClientInterface[]>([]);
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isUpdOpen, setIsUpdOpen] = useState<boolean>(false);

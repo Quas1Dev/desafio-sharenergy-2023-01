@@ -2,8 +2,9 @@ import Navigation from './global-components/Navigation';
 import { ChangeEvent, useEffect, useState } from "react";
 import isNumber from '../utils/IsNumber';
 import checkHttp from '../utils/CheckHttps';
+import { GlobalPropsInterface } from '../interfaces/GlobalInterface';
 
-export default function HttpImage() {
+export default function HttpImage({ user, setUser }: GlobalPropsInterface) {
     const [pickedCode, setPickedCode] = useState<string>();
     const [url, setUrl] = useState<string>("");
 
@@ -42,8 +43,8 @@ export default function HttpImage() {
                         id="http_code_number"
                         value={pickedCode}
                         onChange={handleChange}
-                        className="random_http_image_page--http_code_picker" 
-                        placeholder='Ex: 500'/>
+                        className="random_http_image_page--http_code_picker"
+                        placeholder='Ex: 500' />
                 </form>
 
                 <div className="u-image_centralizer">

@@ -7,11 +7,12 @@ import Navigation from './global-components/Navigation'
 import UsersDisplay from "./random-users-page-components/UsersDisplay";
 import Pagination from "./random-users-page-components/Pagination";
 import SearchBox from "./random-users-page-components/SearchBox";
+import { GlobalPropsInterface } from "../interfaces/GlobalInterface";
 
-export default function RandomUser() {
+export default function RandomUser({ user, setUser }: GlobalPropsInterface) {
     const [randomUsers, setRandomUsers] = useState<RandomUserData[]>([]);
     const [searchList, setSearchList] = useState<RandomUserData[]>([]);
-    
+
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [usersPerPage, setUsersPerPage] = useState(8);
@@ -35,7 +36,7 @@ export default function RandomUser() {
                         gender: usersList[i].gender,
                         key: nanoid()
                     }
-                 
+
                     return [...prevRandomUsers, user]
                 })
 
@@ -44,14 +45,14 @@ export default function RandomUser() {
         }
         fetchUsers();
     }, []);
-    
+
 
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    const currentUsers = searchList.length == 0 ? 
-    randomUsers.slice(indexOfFirstUser, indexOfLastUser):
-    searchList.slice(indexOfFirstUser, indexOfLastUser);
-    
+    const currentUsers = searchList.length == 0 ?
+        randomUsers.slice(indexOfFirstUser, indexOfLastUser) :
+        searchList.slice(indexOfFirstUser, indexOfLastUser);
+
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         const value = e.target.value;
         setSearchList((prevSearchList) => {
@@ -64,14 +65,14 @@ export default function RandomUser() {
             });
             return newRandomUsers;
         });
-        
+
         setSearchInput(value);
     }
 
     return (
         <div className="page_container--random_user_page">
             <Navigation />
-            
+
             <main className="random_user_page--main_content u-page_body">
                 <h1 className="main_content--random_user_page u-title">Lista de Usuários</h1>
                 <p className="page_content--page_descriptio u-description">As informações nessa lista de usuário foram geradas automáticamente usando a API  Random User Generator. Você pode usar a caixa de pesquisa para  procurar  por usuários especificos na lista.</p>
@@ -80,7 +81,7 @@ export default function RandomUser() {
 
                 <UsersDisplay users={currentUsers} loading={loading} />
 
-                <Pagination totalUsers={ searchList.length == 0 ? randomUsers.length : searchList.length} usersPerPage={usersPerPage}
+                <Pagination totalUsers={searchList.length == 0 ? randomUsers.length : searchList.length} usersPerPage={usersPerPage}
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage} />
             </main>
