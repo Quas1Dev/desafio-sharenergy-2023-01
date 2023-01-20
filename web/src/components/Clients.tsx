@@ -14,6 +14,9 @@ export default function Clients() {
     const [clients, setClients] = useState<ClientInterface[]>([]);
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isUpdOpen, setIsUpdOpen] = useState<boolean>(false);
+    const [isDelConfirmOpen, setIsDelConfirmOpen] = useState<boolean>(false);
+    const [userToDelete, setUserToDelete] = useState<string>("")
+
     const [clientToUpdate, setClientToUpdate] = useState<ClientInterface>({
         name: "",
         email: "",
@@ -32,18 +35,24 @@ export default function Clients() {
         fetchClients()
     }, []);
 
-    function handleClickDelete(_id : string) {
+    function handleClickDelete(_id: string) {
+        setIsDelConfirmOpen(previsDelConfirmOpen => !previsDelConfirmOpen)
+        setUserToDelete(_id);
+    }
+
+    function handleClickConfirm() {
         const deleteClient = async () => {
-            const response = await axios.delete("http://localhost:3333/delete/" + _id);
+            const response = await axios.delete("http://localhost:3333/delete/" + userToDelete);
             fetchClients();
         }
         deleteClient();
+        setIsDelConfirmOpen(false);
     }
 
-    function handleClickUpdate(clientData : ClientInterface) {
+    function handleClickUpdate(clientData: ClientInterface) {
         setClientToUpdate(clientData);
         setIsUpdOpen(prevIsUpdOpen => !prevIsUpdOpen);
-     }
+    }
 
     function handleOpenCloseModal() {
         setIsOpen(prevOpenModal => !prevOpenModal);
@@ -51,6 +60,10 @@ export default function Clients() {
 
     function handleOpenCloseUpd() {
         setIsUpdOpen(prevIsUpdOpen => !prevIsUpdOpen);
+    }
+
+    function handleCloseConfirm() {
+        setIsDelConfirmOpen(prevIsDelConfirmOpen => !prevIsDelConfirmOpen);
     }
 
     return (
@@ -61,6 +74,16 @@ export default function Clients() {
                 <p className="page_content--page_description u-description">A tabela abaixo mostra os dados de clientes que cadastramos em nosso banco de dados hospedado na núvem. Caso  nenhum cliente esteja cadastrado, um botão
                     apenas adicione um novo usuário.</p>
                 <button className="clients_page--add_user" onClick={handleOpenCloseModal}>Adicionar usuário</button>
+
+                <ReactModal
+                    className="clients_page--modal"
+                    isOpen={isDelConfirmOpen}
+                    shouldCloseOnOverlayClick={true}
+                    shouldCloseOnEsc={true}
+                    onRequestClose={handleCloseConfirm}>
+                    <p>Tem certeza de que quer deletar esse cliente?</p>
+                    <button className="confirm_btn" onClick={handleClickConfirm} >Confirmar</button>
+                </ReactModal>
 
                 <ReactModal
                     className="clients_page--modal"
@@ -82,38 +105,38 @@ export default function Clients() {
                 </ReactModal>
 
                 <div className="table_wrapper">
-                {clients.length > 0 &&
-                    <table className="clients_page--table_clients">
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Telefone</th>
-                                <th>E-mail</th>
-                                <th>CPF</th>
-                                <th>Endereço</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {clients.map(client => {
-                                return (
-                                    <tr key={client.cpf}>
-                                        <td>{client.name}</td>
-                                        <td>{client.telephone}</td>
-                                        <td>{client.email}</td>
-                                        <td>{client.cpf}</td>
-                                        <td>{client.address}</td>
-                                        <td>
-                                            <Pencil className="table_clients--edit_btn" onClick={(e)=> handleClickUpdate({...client})} />
-                                            <XCircle className="table_clients--del_btn" onClick={(e) => handleClickDelete(client._id)} />
-                                        </td>
-                                    </tr>
-                                )
-                            })}
-                        </tbody>
-                    </table>
-                }
-                 </div>
+                    {clients.length > 0 &&
+                        <table className="clients_page--table_clients">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Telefone</th>
+                                    <th>E-mail</th>
+                                    <th>CPF</th>
+                                    <th>Endereço</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {clients.map(client => {
+                                    return (
+                                        <tr key={client.cpf}>
+                                            <td>{client.name}</td>
+                                            <td>{client.telephone}</td>
+                                            <td>{client.email}</td>
+                                            <td>{client.cpf}</td>
+                                            <td>{client.address}</td>
+                                            <td>
+                                                <Pencil className="table_clients--edit_btn" onClick={(e) => handleClickUpdate({ ...client })} />
+                                                <XCircle className="table_clients--del_btn" onClick={(e) => handleClickDelete(client._id)} />
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </table>
+                    }
+                </div>
             </main>
         </div>
     )
