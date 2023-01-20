@@ -82,7 +82,7 @@ export default function Clients() {
                     shouldCloseOnEsc={true}
                     onRequestClose={handleCloseConfirm}>
                     <p>Tem certeza de que quer deletar esse cliente?</p>
-                    <button className="confirm_btn" onClick={handleClickConfirm} >Confirmar</button>
+                    <button className="modal--conform_delete" onClick={handleClickConfirm} >Confirmar</button>
                 </ReactModal>
 
                 <ReactModal

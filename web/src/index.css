@@ -66,6 +66,7 @@
   box-shadow: 0 1px 5px rgba(150, 150, 150, 0.25);
   margin-bottom: 10px;
 }
+
 .site_menu--list_of_links {
   display: flex;
   flex-direction: row;
@@ -481,6 +482,17 @@
   color: var(--pink)
 }
 
+.modal--conform_delete {
+  margin-top: 17px;
+  background-color: var(--purple);
+  font-size: 0.8rem;
+  padding: 4px 24px;
+  color: #FEFFFC;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
 /* End clients page */
 
 @media only screen and (max-width: 842px) {
@@ -550,8 +562,8 @@
     justify-content: start;
 
     position: fixed;
-    
-    
+
+
     background-color: #fff;
     transition: all 0.4s;
     z-index: 10;
