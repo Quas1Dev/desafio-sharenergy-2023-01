@@ -1,6 +1,5 @@
 import { FormEvent, useEffect, useState, ChangeEvent } from "react";
 import { useNavigate } from 'react-router-dom'
-import { GlobalPropsInterface } from "../interfaces/GlobalInterface";
 
 import axios from 'axios';
 
