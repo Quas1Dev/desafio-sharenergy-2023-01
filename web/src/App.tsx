@@ -27,11 +27,12 @@ function App() {
      This should make the user "always on" *1
    */
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
-    console.log("Logged user:", loggedInUser);
-    if (loggedInUser) {
-      setUser(loggedInUser);
+    let loggedUser = localStorage.getItem("user") || sessionStorage.getItem('user');
+    console.log("Logged:", loggedUser)
+    if (loggedUser) {
+      setUser(loggedUser);
     } else {
+      console.log("Null!")
       setUser(JSON.stringify({ _id: null }));
     }
   }, [])

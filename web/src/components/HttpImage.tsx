@@ -1,7 +1,7 @@
 import Navigation from './global-components/Navigation';
 import { ChangeEvent, useEffect, useState } from "react";
-import isNumber from '../utils/IsNumber';
-import checkHttp from '../utils/CheckHttps';
+import isNumber from '../utils/Isnumber';
+import checkHttp from '../utils/checkhttps';
 
 export default function HttpImage() {
     // The code we want an image for

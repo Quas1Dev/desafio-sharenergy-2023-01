@@ -1,6 +1,6 @@
 import { ClientInterface } from "../interfaces/ClientsPageInterfaces";
 
-export function isEmpty (obj: ClientInterface) : boolean {
+export function isEmpty(obj: ClientInterface): boolean {
     let key: keyof ClientInterface;
 
     for (key of Object.keys(obj)) {
@@ -21,6 +21,19 @@ export default function validate(obj: ClientInterface) {
 
 function checkCpf(strCPF: string): boolean {
     strCPF = strCPF.replace(/\D/g, '');
+   	
+    if (strCPF.length != 11 ||
+        strCPF == "00000000000" ||
+        strCPF == "11111111111" ||
+        strCPF == "22222222222" ||
+        strCPF == "33333333333" ||
+        strCPF == "44444444444" ||
+        strCPF == "55555555555" ||
+        strCPF == "66666666666" ||
+        strCPF == "77777777777" ||
+        strCPF == "88888888888" ||
+        strCPF == "99999999999")
+        return false;
 
     var sum: number;
     var remainder: number;

@@ -37,6 +37,8 @@ function Login({user, setUser} : {user:string, setUser : Function}) {
                 localStorage.setItem('user', JSON.stringify(response.data));
             }
 
+            sessionStorage.setItem('user', JSON.stringify(response.data));
+
             // Display warning if no user is returned.
             if (!response.data._id) {
                 setShowWarning(true);
