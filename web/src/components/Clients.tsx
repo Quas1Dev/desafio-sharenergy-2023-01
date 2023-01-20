@@ -12,7 +12,6 @@ import { ClientInterface } from "../interfaces/ClientsPageInterfaces";
 import { GlobalPropsInterface } from "../interfaces/GlobalInterface";
 
 export default function Clients({ user, setUser }: GlobalPropsInterface) {
-
     const [clients, setClients] = useState<ClientInterface[]>([]);
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isUpdOpen, setIsUpdOpen] = useState<boolean>(false);
