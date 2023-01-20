@@ -28,10 +28,10 @@ function App() {
           <Route path="/" element={<Login user={user} setUser={setUser} />} />
           {userConfirmed && 
            <>
-          <Route path="/randomuser" element={<RandomUser user={user} setUser={setUser} />} />
-          <Route path="/httpimage" element={<HttpImage user={user} setUser={setUser} />} />
-          <Route path="/randomdog" element={<RandomDog user={user} setUser={setUser} />} />
-          <Route path="/clients" element={<Clients user={user} setUser={setUser} />} />
+          <Route path="/randomuser" element={<RandomUser />} />
+          <Route path="/httpimage" element={<HttpImage />} />
+          <Route path="/randomdog" element={<RandomDog />} />
+          <Route path="/clients" element={<Clients />} />
           </>
           }
         </Routes>
