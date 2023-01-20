@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import axios from 'axios';
 
-function LoginForm({user, setUser} : {user:string, setUser : Function}) {
+function Login({user, setUser} : {user:string, setUser : Function}) {
     // Form data is kept here.
     const [form, setForm] = useState({
         user: "",
@@ -122,7 +122,7 @@ function LoginForm({user, setUser} : {user:string, setUser : Function}) {
     )
 }
 
-export default LoginForm;
+export default Login;
 
 
 /*

@@ -1,4 +1,4 @@
-import LoginForm from './components/LoginForm';
+import Login from './components/Login';
 import RandomUser from './components/RandomUsers';
 import HttpImage from './components/HttpImage';
 import RandomDog from './components/RandomDog';
@@ -25,7 +25,7 @@ function App() {
     <div className="page_container">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LoginForm user={user} setUser={setUser} />} />
+          <Route path="/" element={<Login user={user} setUser={setUser} />} />
           {userConfirmed && 
            <>
           <Route path="/randomuser" element={<RandomUser user={user} setUser={setUser} />} />
