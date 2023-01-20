@@ -4,7 +4,7 @@ import { GlobalPropsInterface } from "../interfaces/GlobalInterface";
 
 import axios from 'axios';
 
-function LoginForm({user, setUser} : GlobalPropsInterface) {
+function LoginForm({user, setUser} : {user:string, setUser : Function}) {
     // Form data is kept here.
     const [form, setForm] = useState({
         user: "",
