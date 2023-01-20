@@ -104,8 +104,8 @@ export default function Clients() {
                                         <td>{client.cpf}</td>
                                         <td>{client.address}</td>
                                         <td>
-                                            <Pencil style={{cursor: "pointer"}}onClick={(e)=> handleClickUpdate({...client})} />
-                                            <XCircle style={{cursor: "pointer"}}onClick={(e) => handleClickDelete(client._id)} />
+                                            <Pencil className="table_clients--edit_btn" onClick={(e)=> handleClickUpdate({...client})} />
+                                            <XCircle className="table_clients--del_btn" onClick={(e) => handleClickDelete(client._id)} />
                                         </td>
                                     </tr>
                                 )

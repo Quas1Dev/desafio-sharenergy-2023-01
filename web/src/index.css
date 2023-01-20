@@ -468,6 +468,19 @@
   white-space: nowrap;
 }
 
+.table_clients--edit_btn,
+.table_clients--del_btn {
+  cursor: pointer;
+}
+
+.table_clients--edit_btn {
+  color: var(--blue)
+}
+
+.table_clients--del_btn {
+  color: var(--pink)
+}
+
 /* End clients page */
 
 @media only screen and (max-width: 842px) {
