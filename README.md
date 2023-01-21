@@ -3,7 +3,7 @@
 ## Como executar o projeto
 Requisitos:
 Node + npm
-
+``` 
 # Clone o repositório
 git clone https://github.com/SHARENERGY-OFICIAL/desafio-sharenergy-2023-01.git
 
@@ -27,7 +27,7 @@ npm install
 
 # Execute a aplicação web
 npm run dev
-
+```
 By Fernando de Jesus BOnfim
 
 https://www.linkedin.com/in/fernando-bonfim-b3249624b/
