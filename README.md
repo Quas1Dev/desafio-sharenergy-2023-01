@@ -32,7 +32,7 @@ npm run dev
 http://localhost:5173/
 
 ```
-Acess [aqyu](https://youtu.be/Z8LAemShKzs) o [link para ver a apresentação do video no YouTube: 
+Acess [aqui](https://youtu.be/Z8LAemShKzs) o [link para ver a apresentação do video no YouTube: 
 
 By Fernando de Jesus Bonfim
 https://www.linkedin.com/in/fernando-bonfim-b3249624b/
