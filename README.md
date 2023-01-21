@@ -28,6 +28,6 @@ npm install
 # Execute a aplicação web
 npm run dev
 ```
-By Fernando de Jesus BOnfim
+By Fernando de Jesus Bonfim
 
 https://www.linkedin.com/in/fernando-bonfim-b3249624b/
