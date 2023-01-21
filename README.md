@@ -27,6 +27,10 @@ npm install
 
 # Execute a aplicação web
 npm run dev
+
+# Abra um navegador e entre no endereço abaixo
+http://localhost:5173/
+
 ```
 By Fernando de Jesus Bonfim
 
