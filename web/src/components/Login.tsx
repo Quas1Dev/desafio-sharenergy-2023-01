@@ -100,7 +100,7 @@ function Login({user, setUser} : {user:string, setUser : Function}) {
 
                     </div>
 
-                    <button className="login_form--submit">Enviar</button>
+                    <button className="login_form--submit">Fazer login</button>
                 </form>
 
             </main>
