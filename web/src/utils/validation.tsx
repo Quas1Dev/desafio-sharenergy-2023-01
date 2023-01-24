@@ -8,7 +8,7 @@ export function isEmpty(obj: ClientInterface): boolean {
             return true;
         }
     }
-
+    console.log("I'm returning false")
     return false;
 }
 
@@ -21,7 +21,7 @@ export default function validate(obj: ClientInterface) {
 
 function checkCpf(strCPF: string): boolean {
     strCPF = strCPF.replace(/\D/g, '');
-   	
+    console.log(strCPF)
     if (strCPF.length != 11 ||
         strCPF == "00000000000" ||
         strCPF == "11111111111" ||
@@ -62,6 +62,7 @@ function checkCpf(strCPF: string): boolean {
 
     if ((remainder == 10) || (remainder == 11)) remainder = 0;
     if (remainder != parseInt(strCPF.substring(10, 11))) return false;
+    console.log("I'm returning false")
     return true;
 }
 
