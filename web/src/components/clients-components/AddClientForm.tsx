@@ -1,9 +1,9 @@
-import axios from "axios";
 import FormFields from "./FormFields";
 import { FormEvent, ChangeEvent, useState } from 'react';
-import { maskTelephone, maskCpf } from '../../utils/masks';
+import { maskCpf, maskTelephone } from "../../utils/Masks";
 import { AddClientFormPropsInterface, ClientInterface } from "../../interfaces/ClientsPageInterfaces";
 import validate, { isEmpty } from "../../utils/validation";
+import api from "../../axiosInstance";
 
 export default function AddClientForm({ setIsOpen, fetchClients }: AddClientFormPropsInterface) {
 
@@ -26,7 +26,7 @@ export default function AddClientForm({ setIsOpen, fetchClients }: AddClientForm
 
         if (!empty && isValid) {
             const addUser = async () => {
-                const response = await axios.post("http://localhost:3333/add", clientFormData);
+                const response = await api.post("/add", clientFormData);
                 setIsOpen(false);
                 fetchClients()
             }

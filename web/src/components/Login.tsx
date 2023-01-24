@@ -1,7 +1,7 @@
-import { FormEvent, useEffect, useState, ChangeEvent } from "react";
+import { FormEvent, useState, ChangeEvent } from "react";
 import { useNavigate } from 'react-router-dom'
 
-import axios from 'axios';
+import api from "../axiosInstance";
 
 function Login({user, setUser} : {user:string, setUser : Function}) {
     const [form, setForm] = useState({
@@ -31,7 +31,7 @@ function Login({user, setUser} : {user:string, setUser : Function}) {
         e.preventDefault();
 
         const checkUser = async () => {
-            const response = await axios.post("http://localhost:3333/confirmLogin", form);
+            const response = await api.post("/confirmLogin", form);
             
             if (form.keepon) {
                 localStorage.setItem('user', JSON.stringify(response.data));
@@ -56,7 +56,7 @@ function Login({user, setUser} : {user:string, setUser : Function}) {
         const checkAndUser = async ()=>{
 
            const loggedUser = JSON.parse(user);
-           const response =  await axios.get("http://localhost:3333/confirmUser/" + loggedUser._id);
+           const response =  await api.get("/confirmUser/" + loggedUser._id);
            const data = response.data;
 
            if (data._id) navigate("/randomuser");

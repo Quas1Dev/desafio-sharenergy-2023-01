@@ -1,7 +1,7 @@
 import FormFields from "./FormFields";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { UpdateUserFormInterface, ClientInterface } from "../../interfaces/ClientsPageInterfaces";
-import axios from "axios";
+import api from "../../axiosInstance";
 
 export default function UpdateUserForm({ fetchClients, setIsUpdOpen, clientToUpdate }: UpdateUserFormInterface) {
     const [clientData, setClientData] = useState<ClientInterface>({ ...clientToUpdate });
@@ -20,7 +20,7 @@ export default function UpdateUserForm({ fetchClients, setIsUpdOpen, clientToUpd
         console.log("Submitting");
         const updateClient = async () => {
             console.log("id: ",clientData._id)
-            await axios.put("http://localhost:3333/update/" + clientData._id, {
+            await api.put("/update/" + clientData._id, {
                 ...clientData
             });
 

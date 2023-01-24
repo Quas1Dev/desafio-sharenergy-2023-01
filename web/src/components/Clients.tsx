@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../axiosInstance";
 import { useState, useEffect } from 'react';
 
 import ReactModal from 'react-modal';
@@ -27,7 +27,7 @@ export default function Clients() {
     });
 
     const fetchClients = async () => {
-        const response = await axios.get("http://localhost:3333/read");
+        const response = await api.get("/read");
         setClients(response.data);
     }
 
@@ -44,7 +44,7 @@ export default function Clients() {
     // Delete the user on confirmation
     function handleClickConfirm() {
         const deleteClient = async () => {
-            const response = await axios.delete("http://localhost:3333/delete/" + userToDelete);
+            await api.delete("/delete/" + userToDelete);
             fetchClients();
         }
         deleteClient();
