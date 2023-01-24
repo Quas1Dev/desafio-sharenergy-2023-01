@@ -15,9 +15,7 @@ function App() {
   // User id for checking login goes here.
   const [user, setUser] = useState<string>(JSON.stringify({ _id: null }));
 
-  /* 
-     This should make the user "always on" *1
-   */
+  // This should make the user "always on" *1
   useEffect(() => {
     const loadAndCheckUser = async () => {
       let storedUser : UserInterface = JSON.parse(localStorage.getItem("user") || sessionStorage.getItem('user') || "{'_id': null }");
