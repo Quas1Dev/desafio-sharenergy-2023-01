@@ -1,4 +1,4 @@
-export interface RandomUserData {
+export interface CardProps {
     name: string;
     email: string;
     image: string;
@@ -8,7 +8,7 @@ export interface RandomUserData {
     key: string;
 }
 
-export default function Card({ name, email, image, username, age, gender, key }: RandomUserData) {
+export default function Card({ name, email, image, username, age, gender, key }: CardProps) {
     // console.log("Gen:",gender)
     return (
         <div className={"card_listing--user_card " +

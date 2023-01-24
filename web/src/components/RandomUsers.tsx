@@ -23,7 +23,7 @@ export default function RandomUser() {
             const response = await axios.get<RandomUserApiResponse>("https://randomuser.me/api/?results=40");
             setLoading(false);
 
-            setRandomUsers(response.data.results.map(user =>{
+            setRandomUsers(response.data.results.map(user => {
                 user.key = nanoid();
                 return user;
             }))
@@ -39,22 +39,21 @@ export default function RandomUser() {
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         const value = e.target.value;
-        setSearchList((prevSearchList) => {
-            let newRandomUsers = randomUsers.filter((randomUser) => {
-                let lowerCaseValue = value.toLocaleLowerCase()
-                if (`${randomUser.name.first} ${randomUser.name.last}`.toLowerCase().match(lowerCaseValue) ||
-                    randomUser.email.toLowerCase().match(lowerCaseValue) ||
-                    randomUser.login.username.toLowerCase().match(lowerCaseValue)) {
-                    return randomUser;
-                }
-            });
 
-            return newRandomUsers;
-        });
+        // We filter only the users that match the value 
+        // typed by the user.
+        setSearchList(randomUsers.filter((randomUser) => {
+            let lowerCaseValue = value.toLocaleLowerCase()
+            if (`${randomUser.name.first} ${randomUser.name.last}`.toLowerCase().match(lowerCaseValue) ||
+                randomUser.email.toLowerCase().match(lowerCaseValue) ||
+                randomUser.login.username.toLowerCase().match(lowerCaseValue)) {
+                return randomUser;
+            }
+        }))
 
         setSearchInput(value);
     }
- 
+
     return (
         <div className="page_container--random_user_page">
             <Navigation />
