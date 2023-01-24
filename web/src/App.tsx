@@ -13,15 +13,16 @@ import { UserInterface } from './interfaces/GlobalInterface';
 
 function App() {
   // User id for checking login goes here.
-  const [user, setUser] = useState<string>(JSON.stringify({ _id: null }));
+  const [user, setUser] = useState<string>("");
 
   // This should make the user "always on" *1
   useEffect(() => {
     const loadAndCheckUser = async () => {
-      let storedUser : UserInterface = JSON.parse(localStorage.getItem("user") || sessionStorage.getItem('user') || "{'_id': null }");
-      const response = await api.get<UserInterface>("/confirmUser/" + storedUser._id);
+      let storedUser : string = localStorage.getItem("user") || sessionStorage.getItem('user') || "";
+      console.log("Stored user:", storedUser)
+      const response = await api.get<UserInterface>("/confirmUser/" + storedUser);
 
-      if (response.data._id) setUser(JSON.stringify(storedUser));
+      if (response.data._id) setUser(storedUser);
     }
 
     loadAndCheckUser();
@@ -32,7 +33,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Login user={user} setUser={setUser} />} />
-          <Route element={<ProtectedRoute user={JSON.parse(user)} redirectPath="/" />}>
+          <Route element={<ProtectedRoute user={user} redirectPath="/" />}>
             <Route path="/randomuser" element={<RandomUser />} />
             <Route path="/httpimage" element={<HttpImage />} />
             <Route path="/randomdog" element={<RandomDog />} />

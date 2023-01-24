@@ -1,18 +1,18 @@
 import { ChangeEvent, useEffect, useState } from "react"
 import axios from "axios";
 import { nanoid } from "nanoid";
-import { RandomUserData } from "./random-users-page-components/Card";
 
 import Navigation from './global-components/Navigation'
 import UsersDisplay from "./random-users-page-components/UsersDisplay";
 import Pagination from "./random-users-page-components/Pagination";
 import SearchBox from "./random-users-page-components/SearchBox";
+import { RandomUserData, RandomUserApiResponse } from "../interfaces/RandomUsersInterfaces";
 
 export default function RandomUser() {
     const [randomUsers, setRandomUsers] = useState<RandomUserData[]>([]);
+    const [loading, setLoading] = useState(false);
     const [searchList, setSearchList] = useState<RandomUserData[]>([]);
 
-    const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [usersPerPage, setUsersPerPage] = useState(8);
     const [searchInput, setSearchInput] = useState("");
@@ -20,31 +20,16 @@ export default function RandomUser() {
     useEffect(() => {
         const fetchUsers = async () => {
             setLoading(true);
-            const response = await axios.get("https://randomuser.me/api/?results=40");
-            const usersList = response.data.results;
+            const response = await axios.get<RandomUserApiResponse>("https://randomuser.me/api/?results=40");
             setLoading(false);
 
-            for (let i = 0; i < usersList.length; i++) {
-                setRandomUsers(prevRandomUsers => {
-                    const user: any = {
-                        name: usersList[i].name.first + " " + usersList[i].name.last,
-                        age: usersList[i].registered.age,
-                        email: usersList[i].email,
-                        image: usersList[i].picture.medium,
-                        username: usersList[i].login.username,
-                        gender: usersList[i].gender,
-                        key: nanoid()
-                    }
-
-                    return [...prevRandomUsers, user]
-                })
-
-            }
-
+            setRandomUsers(response.data.results.map(user =>{
+                user.key = nanoid();
+                return user;
+            }))
         }
         fetchUsers();
     }, []);
-
 
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
@@ -56,18 +41,20 @@ export default function RandomUser() {
         const value = e.target.value;
         setSearchList((prevSearchList) => {
             let newRandomUsers = randomUsers.filter((randomUser) => {
-                if (randomUser.name.toLowerCase().match(value.toLowerCase()) ||
-                    randomUser.email.toLowerCase().match(value.toLowerCase()) ||
-                    randomUser.username.toLowerCase().match(value.toLowerCase())) {
+                let lowerCaseValue = value.toLocaleLowerCase()
+                if (`${randomUser.name.first} ${randomUser.name.last}`.toLowerCase().match(lowerCaseValue) ||
+                    randomUser.email.toLowerCase().match(lowerCaseValue) ||
+                    randomUser.login.username.toLowerCase().match(lowerCaseValue)) {
                     return randomUser;
                 }
             });
+
             return newRandomUsers;
         });
 
         setSearchInput(value);
     }
-
+ 
     return (
         <div className="page_container--random_user_page">
             <Navigation />

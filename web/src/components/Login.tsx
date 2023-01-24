@@ -2,8 +2,19 @@ import { FormEvent, useState, ChangeEvent } from "react";
 import { useNavigate } from 'react-router-dom'
 
 import api from "../axiosInstance";
+import { UserInterface } from "../interfaces/GlobalInterface";
 
 function Login({user, setUser} : {user:string, setUser : Function}) {
+    // If the user is valid, then redirect to HTTP image
+    if (user) {
+        const checkAndUser = async ()=>{
+           const response =  await api.get<UserInterface>("/confirmUser/" + user);
+           const data = response.data;
+           if (data._id) navigate("/randomuser");
+        }
+        checkAndUser();
+    }
+    
     const [form, setForm] = useState({
         user: "",
         password: "",
@@ -31,38 +42,26 @@ function Login({user, setUser} : {user:string, setUser : Function}) {
         e.preventDefault();
 
         const checkUser = async () => {
-            const response = await api.post("/confirmLogin", form);
+            const response = await api.post<UserInterface>("/confirmLogin", form);
             
             if (form.keepon) {
-                localStorage.setItem('user', JSON.stringify(response.data));
+                localStorage.setItem('user', response.data._id);
             }
 
-            sessionStorage.setItem('user', JSON.stringify(response.data));
+            sessionStorage.setItem('user', response.data._id);
 
             // Display warning if no user is returned.
             if (!response.data._id) {
                 setShowWarning(true);
             }
 
-            setUser(JSON.stringify(response.data));
+            setUser(response.data._id);
         }
 
         checkUser();
     }
 
-    // Redirect logged in user to the "HTTP image" page
-    if (user) {
-        console.log("Cofirming user.");
-        const checkAndUser = async ()=>{
-
-           const loggedUser = JSON.parse(user);
-           const response =  await api.get("/confirmUser/" + loggedUser._id);
-           const data = response.data;
-
-           if (data._id) navigate("/randomuser");
-        }
-        checkAndUser();
-    }
+    
 
     return (
         <div className="page_container--login_page">

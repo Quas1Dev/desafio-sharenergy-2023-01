@@ -4,5 +4,5 @@ export interface GlobalPropsInterface {
 }
 
 export interface UserInterface {
-    _id : string | null;
+    _id : string;
 }

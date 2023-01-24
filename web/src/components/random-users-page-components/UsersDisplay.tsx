@@ -1,4 +1,5 @@
-import Card, { RandomUserData } from "./Card";
+import Card from "./Card";
+import { RandomUserData } from "../../interfaces/RandomUsersInterfaces";
 
 interface UserDisplayInterface {
     users: RandomUserData[];
@@ -12,12 +13,12 @@ export default function UsersDisplay({ users, loading }: UserDisplayInterface) {
 
     const userCards = users.map((user: RandomUserData) => {
         return <Card
-            name={user.name}
-            username={user.username}
+            name={`${user.name.first}  + ${user.name.last}`}
+            username={user.login.username}
             email={user.email}
-            image={user.image}
+            image={user.picture.medium}
             gender={user.gender}
-            age={user.age}
+            age={user.registered.age}
             key={user.key} />
     })
 
