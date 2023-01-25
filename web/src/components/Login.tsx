@@ -4,17 +4,17 @@ import { useNavigate } from 'react-router-dom'
 import api from "../axiosInstance";
 import { UserInterface } from "../interfaces/GlobalInterface";
 
-function Login({user, setUser} : {user:string, setUser : Function}) {
+function Login({ user, setUser }: { user: string, setUser: Function }) {
     // If the user is valid, then redirect to HTTP image
     if (user) {
-        const checkAndUser = async ()=>{
-           const response =  await api.get<UserInterface>("/confirmUser/" + user);
-           const data = response.data;
-           if (data._id) navigate("/randomuser");
+        const checkAndUser = async () => {
+            const response = await api.get<UserInterface>("/confirmUser/" + user);
+            const data = response.data;
+            if (data._id) navigate("/randomuser");
         }
         checkAndUser();
     }
-    
+
     const [form, setForm] = useState({
         user: "",
         password: "",
@@ -43,7 +43,7 @@ function Login({user, setUser} : {user:string, setUser : Function}) {
 
         const checkUser = async () => {
             const response = await api.post<UserInterface>("/confirmLogin", form);
-            
+
             if (form.keepon) {
                 localStorage.setItem('user', response.data._id);
             }
@@ -61,13 +61,13 @@ function Login({user, setUser} : {user:string, setUser : Function}) {
         checkUser();
     }
 
-    
+
 
     return (
         <div className="page_container--login_page">
             <main className="login_page--main_content" >
                 {showWarning && <span className="login_box--warning">Usuário ou senha incorretos! Por favor, tente novamente.</span>}
-                
+
                 <h1 className="main_content--login_page_title u-title">Login</h1>
                 <form action="#" className="login_box--login_form" onSubmit={handleSubmit}>
                     <div>
@@ -89,10 +89,10 @@ function Login({user, setUser} : {user:string, setUser : Function}) {
                     </div>
 
                     <div className="login_form--keepon">
-                        <input type="checkbox" 
-                        name="keepon" 
-                        checked={form.keepon} 
-                        onChange={handleChange}
+                        <input type="checkbox"
+                            name="keepon"
+                            checked={form.keepon}
+                            onChange={handleChange}
                         />
                         <label htmlFor="keepon"
                             className="keepon--label">Mantenha-me conectado</label>

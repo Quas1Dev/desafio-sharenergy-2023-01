@@ -1,4 +1,5 @@
 import { ClientInterface } from "../interfaces/ClientsPageInterfaces";
+import validator from 'validator';
 
 export function isEmpty(obj: ClientInterface): boolean {
     let key: keyof ClientInterface;
@@ -13,13 +14,20 @@ export function isEmpty(obj: ClientInterface): boolean {
 }
 
 export default function validate(obj: ClientInterface) {
-    const cpfValid: boolean = checkCpf(obj.cpf);
-    const telephoneValid: boolean = checkTelephone(obj.telephone);
+    const cpfValid : boolean = checkCpf(obj.cpf);
+    const telephoneValid : boolean = checkTelephone(obj.telephone);
+    const emailValid : boolean = validator.isEmail(obj.email);
 
-    return cpfValid && telephoneValid;
+    return cpfValid && telephoneValid && emailValid;
 }
 
-function checkCpf(strCPF: string): boolean {
+// function checkEmail(strEmail : string) : boolean {
+//     const emailRegex = /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/i
+//     console.log("Email is valid:", emailRegex.test(strEmail));
+//     return emailRegex.test(strEmail);
+// }
+
+function checkCpf(strCPF : string) : boolean {
     strCPF = strCPF.replace(/\D/g, '');
     console.log(strCPF)
     if (strCPF.length != 11 ||
