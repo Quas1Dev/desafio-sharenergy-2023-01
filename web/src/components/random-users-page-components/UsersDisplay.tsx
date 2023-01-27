@@ -13,7 +13,7 @@ export default function UsersDisplay({ users, loading }: UserDisplayInterface) {
 
     const userCards = users.map((user: RandomUserData) => {
         return <Card
-            name={`${user.name.first}  + ${user.name.last}`}
+            name={`${user.name.first} ${user.name.last}`}
             username={user.login.username}
             email={user.email}
             image={user.picture.medium}
