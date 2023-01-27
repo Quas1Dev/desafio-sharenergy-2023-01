@@ -19,9 +19,7 @@ function App() {
   useEffect(() => {
     const loadAndCheckUser = async () => {
       let storedUser : string = localStorage.getItem("user") || sessionStorage.getItem('user') || "";
-      console.log("Stored user:", storedUser)
       const response = await api.get<UserInterface>("/confirmUser/" + storedUser);
-
       if (response.data._id) setUser(storedUser);
     }
 
