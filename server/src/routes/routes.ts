@@ -4,7 +4,7 @@ import UserController from '../controllers/UserControllers';
 const routes =  express.Router();
 
 routes.post('/add', ClientController.add);
-routes.delete('/delete/:id', ClientController.delete);
+routes.delete('/delete/:id', ClientController.del);
 routes.get('/read', ClientController.read);
 routes.put('/update/:id', ClientController.update);
 
