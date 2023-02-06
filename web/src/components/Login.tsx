@@ -1,7 +1,8 @@
-import { FormEvent, useState, ChangeEvent, useEffect } from "react";
-import { useNavigate } from 'react-router-dom'
+import { FormEvent, useState, ChangeEvent, useEffect, useContext } from "react";
+import { useNavigate } from 'react-router-dom';
 
 import api from "../axiosInstance";
+import { UserContext } from "../contexts/usercontext";
 import { UserInterface } from "../interfaces/GlobalInterface";
 
 function useCheckAndRedirectUser(user: string) {
@@ -11,7 +12,7 @@ function useCheckAndRedirectUser(user: string) {
         const checkAndRedirect = async () => {
             if (user) {
                 const response = await api.get<UserInterface>("/confirmUser/" + user);
-            
+
                 const data = response.data;
                 if (data.token) navigate("/randomuser");
             }
@@ -20,7 +21,8 @@ function useCheckAndRedirectUser(user: string) {
     }, [user]);
 }
 
-function Login({ user, setUser }: { user: string, setUser: Function }) {
+function Login() {
+    const { user, setUser } = useContext(UserContext)
     useCheckAndRedirectUser(user);
 
     const [form, setForm] = useState({
@@ -48,7 +50,7 @@ function Login({ user, setUser }: { user: string, setUser: Function }) {
 
         const checkUser = async () => {
             const response = await api.post<UserInterface>("/confirmLogin", form);
-          
+
             const { token } = response.data;
 
             // Display warning if no user is returned and prevent setting user

@@ -4,8 +4,9 @@ import HttpImage from './components/HttpImage';
 import RandomDog from './components/RandomDog';
 import Clients from './components/Clients';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { UserContext } from './contexts/usercontext';
 
 import api from './axiosInstance';
 import ProtectedRoute from './components/utils-components/ProtectedComponents';
@@ -18,7 +19,7 @@ function App() {
   // This should make the user "always on" *1
   useEffect(() => {
     const loadAndCheckUser = async () => {
-      let storedUser : string = localStorage.getItem("user") || sessionStorage.getItem('user') || "";
+      let storedUser: string = localStorage.getItem("user") || sessionStorage.getItem('user') || "";
       const response = await api.get<UserInterface>("/confirmUser/" + storedUser);
       if (response.data.token) setUser(storedUser);
     }
@@ -27,20 +28,22 @@ function App() {
   }, [])
 
   return (
-    <div className="page_container">
-      <BrowserRouter>
-        <Routes>
-          <Route index element={<Login user={user} setUser={setUser} />} />
-          <Route element={<ProtectedRoute user={user} redirectPath="/" />}>
-            <Route path="/randomuser" element={<RandomUser />} />
-            <Route path="/httpimage" element={<HttpImage />} />
-            <Route path="/randomdog" element={<RandomDog />} />
-            <Route path="/clients" element={<Clients />} />
-          </Route>
-          <Route path="*" element={<p>Nada por aqui: 404</p>} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <UserContext.Provider value={{ user, setUser }}>
+      <div className="page_container">
+        <BrowserRouter>
+          <Routes>
+            <Route index element={<Login />} />
+            <Route element={<ProtectedRoute user={user} redirectPath="/" />}>
+              <Route path="/randomuser" element={<RandomUser />} />
+              <Route path="/httpimage" element={<HttpImage />} />
+              <Route path="/randomdog" element={<RandomDog />} />
+              <Route path="/clients" element={<Clients />} />
+            </Route>
+            <Route path="*" element={<p>Nada por aqui: 404</p>} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </UserContext.Provider>
   )
 }
 
