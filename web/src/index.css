@@ -69,8 +69,18 @@
 
 /* Site's main menu */
 .site_menu {
+  display: flex;
   box-shadow: 0 1px 5px rgba(150, 150, 150, 0.25);
   margin-bottom: 10px;
+}
+
+.site_menu--logout {
+  font-size: var(--fontsize-sm);
+  font-weight: 700;
+  padding: 0px 10px;
+  background: transparent;
+  margin-left: auto;
+  cursor: pointer;
 }
 
 .site_menu--list_of_links {
@@ -79,7 +89,7 @@
   gap: 20px;
   list-style: none;
   justify-content: center;
-  padding: 22px;
+  padding: 35px 22px;
 }
 
 .list_of_links--link {
@@ -125,6 +135,7 @@
 
 .site_menu--list_of_links.show {
   left: 0;
+  z-index: 1;
 }
 
 /* End main menu */
@@ -573,6 +584,5 @@
 
     background-color: #fff;
     transition: all 0.4s;
-    z-index: 10;
   }
 }

@@ -1,28 +1,34 @@
 import { Link } from "react-router-dom";
-import { useState, MouseEvent } from 'react';
+import { useState, MouseEvent, useContext } from 'react';
+import { UserContext } from "../../contexts/usercontext";
 
 export default function Navigation() {
     const [showMenu, setShowMenu] = useState(false);
+    const {user, setUser} = useContext(UserContext);
 
     // Very important to correctly show the menu
     // on resize.
-    window.addEventListener("resize", (e)=>{
+    window.addEventListener("resize", (e) => {
         setShowMenu(false);
     })
 
-    function handleClick (e: MouseEvent) {
-        setShowMenu(prevShowMenu => !prevShowMenu)
+    function handleClick(e: MouseEvent) {
+        setShowMenu(prevShowMenu => !prevShowMenu);
     }
 
-    function handleResize (e : any){
+    function handleResize(e: any) {
         console.log("False")
         setShowMenu(false);
+    }
+
+    function handleClickLogout() {
+       setUser("");
     }
 
     return (
         <nav className="site_menu">
             <div className={"site_menu--toggle_menu_button toggle " + (showMenu ? "change" : "")}
-            onClick={handleClick}>
+                onClick={handleClick}>
                 <div className="bar1"></div>
                 <div className="bar2"></div>
                 <div className="bar3"></div>
@@ -33,6 +39,7 @@ export default function Navigation() {
                 <li><Link to="/randomdog" className="list_of_links--link"> Cachorro aleatório </Link></li>
                 <li><Link to="/clients" className="list_of_links--link"> Clientes </Link></li>
             </ul>
+            <button onClick={handleClickLogout} className="site_menu--logout">Sair</button>
         </nav>
     )
 }
