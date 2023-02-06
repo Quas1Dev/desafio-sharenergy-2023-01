@@ -20,7 +20,7 @@ function App() {
     const loadAndCheckUser = async () => {
       let storedUser : string = localStorage.getItem("user") || sessionStorage.getItem('user') || "";
       const response = await api.get<UserInterface>("/confirmUser/" + storedUser);
-      if (response.data._id) setUser(storedUser);
+      if (response.data.token) setUser(storedUser);
     }
 
     loadAndCheckUser();

@@ -11,8 +11,9 @@ function useCheckAndRedirectUser(user: string) {
         const checkAndRedirect = async () => {
             if (user) {
                 const response = await api.get<UserInterface>("/confirmUser/" + user);
+            
                 const data = response.data;
-                if (data._id) navigate("/randomuser");
+                if (data.token) navigate("/randomuser");
             }
         }
         checkAndRedirect();
@@ -47,25 +48,25 @@ function Login({ user, setUser }: { user: string, setUser: Function }) {
 
         const checkUser = async () => {
             const response = await api.post<UserInterface>("/confirmLogin", form);
-
-            const { _id } = response.data;
+          
+            const { token } = response.data;
 
             // Display warning if no user is returned and prevent setting user
             // state.
-            if (!_id) {
+            if (!token) {
                 setShowWarning(true);
                 return;
             }
 
             // Remember user after session is finished
             if (form.keepon) {
-                localStorage.setItem('user', _id);
+                localStorage.setItem('user', token);
             }
 
             // Remember user during session
-            sessionStorage.setItem('user', _id);
+            sessionStorage.setItem('user', token);
 
-            setUser(_id);
+            setUser(token);
         }
 
         checkUser();
