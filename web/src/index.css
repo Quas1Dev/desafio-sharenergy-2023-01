@@ -6,17 +6,22 @@
   position: relative;
   border: none;
   
+  
+}
+
+:root {
+  font-family: 'calibri';
+  font-size: 20px;
+
   --pink: #FF1053;
   --purple: #6C6EA0;
   --blue: #66C7F4;
   --cinza: #66C7F4;
   --black: #000;
 
-}
-
-:root {
-  font-family: 'calibri';
-  font-size: 20px;
+  --fontsize-bg: 1rem;
+  --fontsize-md: 0.88rem;
+  --fontsize-sm: 0.8rem;
 }
 
 .page_container {
@@ -29,12 +34,12 @@
 /* Utilities */
 .u-title {
   font-weight: 700;
-  font-size: 1rem;
+  font-size: var(--fontsize-bg);
 }
 
 .u-description {
   font-weight: 400;
-  font-size: 0.81rem;
+  font-size: var(--fontsize-sm);
   line-height: 17px;
   margin-top: 14px;
 }
@@ -79,7 +84,7 @@
 
 .list_of_links--link {
   font-weight: 700;
-  font-size: 0.81rem;
+  font-size: var(--fontsize-sm);
   line-height: 17px;
   color: var(--black);
   text-decoration: none;
@@ -146,6 +151,7 @@
 }
 
 .login_form--field_name {
+  font-size: var(--fontsize-md);
   font-weight: 400;
   line-height: 22px;
   display: block;
@@ -153,7 +159,7 @@
 }
 
 .login_box--title {
-  font-size: 1rem;
+  font-size: var(--fontsize-md);
   line-height: 26px;
   margin-top: 13px;
 }
@@ -168,7 +174,7 @@
   border-color: var(--purple);
   padding-left: 5px;
   outline: none;
-  font-size: 0.8rem;
+  font-size: var(--fontsize-sm);
   font-weight: lighter;
 }
 
@@ -177,13 +183,14 @@
 }
 
 .keepon--label {
+  font-size: var(--fontsize-sm);
   margin-left: 14px;
 }
 
 .login_form--submit {
   margin-top: 17px;
   background-color: #6C6EA0;
-  font-size: 1rem;
+  font-size: var(--fontsize-sm);
   padding: 4px 24px;
   color: #FEFFFC;
   outline: none;
@@ -200,7 +207,7 @@
   text-align: center;
 
   font-weight: 700;
-  font-size: 14px;
+  font-size: var(--fontsize-sm);
   line-height: 17px;
   /* identical to box height */
 
@@ -258,7 +265,7 @@
 .user_infos--info {
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
+  font-size: var(--fontsize-sm);
   line-height: 17px;
 
   color: rgba(0, 0, 0, 0.5);
@@ -298,7 +305,7 @@
   background: #FFFFFF;
   border: 1px solid #000000;
 
-  font-size: 0.8rem;
+  font-size: var(--fontsize-sm);
 
   outline: none;
   border-width: 0 0 2px 0;
@@ -334,7 +341,7 @@
   background: #FFFFFF;
   border: 1px solid var(--black);
 
-  font-size: 0.8rem;
+  font-size: var(--fontsize-sm);
 
   outline: none;
   border-width: 0 0 2px 0;
@@ -343,7 +350,7 @@
 }
 
 .page_conent--image_form {
-  font-size: 0.88rem;
+  font-size: var(--fontsize-md);
 }
 
 /* End HTTP image page */
@@ -568,6 +575,4 @@
     transition: all 0.4s;
     z-index: 10;
   }
-
-
 }
