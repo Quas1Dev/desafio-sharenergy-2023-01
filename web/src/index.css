@@ -4,7 +4,8 @@
   margin: 0;
   box-sizing: border-box;
   position: relative;
-
+  border: none;
+  
   --pink: #FF1053;
   --purple: #6C6EA0;
   --blue: #66C7F4;
@@ -505,7 +506,6 @@
   .card_listing--user_card {
     width: 300px;
     align-self: initial;
-
   }
 
   .post_listing--pagination {
